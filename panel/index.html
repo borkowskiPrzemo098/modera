@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel — MODERA</title>
+<meta name="description" content="Panel klienta MODERA: marki, produkty, generowanie treści marketingowych, akceptacja i eksport. Wersja demonstracyjna.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0D2321">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="panel.css">
+</head>
+<body>
+<svg width="0" height="0" class="sprite" aria-hidden="true">
+  <defs>
+    <symbol id="i-stats" viewBox="0 0 32 32"><path d="M5 27h22M8 22v-6M14 22V10M20 22v-9M26 22V6"/></symbol>
+    <symbol id="i-consent" viewBox="0 0 32 32"><path d="M16 4 6 8v8c0 6 4.3 10.5 10 12 5.7-1.5 10-6 10-12V8L16 4Z"/><path d="m11.5 16 3.2 3.2L21 13"/></symbol>
+    <symbol id="i-seo" viewBox="0 0 32 32"><circle cx="13" cy="13" r="8"/><path d="m19 19 8 8M9.5 15l3-3 2 2 3-3.5"/></symbol>
+    <symbol id="i-aivis" viewBox="0 0 32 32"><path d="M3 16s5-9 13-9 13 9 13 9-5 9-13 9S3 16 3 16Z"/><path d="M16 11.5v9M11.5 16h9"/></symbol>
+    <symbol id="i-cms" viewBox="0 0 32 32"><path d="M6 4h14l6 6v18H6V4Z"/><path d="M20 4v6h6M10 16h12M10 21h8"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 32 32"><path d="M4 7h24v18H4V7Z"/><path d="m4 8 12 10L28 8"/></symbol>
+    <symbol id="i-campaign" viewBox="0 0 32 32"><path d="M5 13v6h5l11 6V7L10 13H5Z"/><path d="M10 19l2 7h4l-2-7M25 12v8"/></symbol>
+    <symbol id="i-style" viewBox="0 0 32 32"><path d="M4 4h10v24H4V4Z"/><path d="M14 9l7-3 7 16-14 6"/><path d="M4 11h10M4 18h10"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 32 32"><path d="M4 5h18v12H11l-5 4v-4H4V5Z"/><path d="M22 11h6v12h-2v4l-5-4h-8v-2"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 32 32"><path d="M4 5h24l-9 11v10l-6 3V16L4 5Z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 32 32"><path d="M13 19l6-6"/><path d="M11 14 8 17a4.2 4.2 0 0 0 6 6l3-3M21 18l3-3a4.2 4.2 0 0 0-6-6l-3 3"/></symbol>
+    <symbol id="i-ask" viewBox="0 0 32 32"><path d="M4 5h24v17H13l-6 5v-5H4V5Z"/><path d="M10 17v-3M15 17v-6M20 17v-4"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 32 32"><path d="M4 16h3M9 11v10M13 7v18M17 12v8M21 9v14M25 14v4M28 16h1"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 32 32"><path d="M11 4v7M21 4v7M7 11h18v5a9 9 0 0 1-18 0v-5Z"/><path d="M16 25v4"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 32 32"><path d="M7 14h18v14H7V14Z"/><path d="M11 14V9a5 5 0 0 1 10 0v5M16 19v4"/></symbol>
+    <symbol id="i-build" viewBox="0 0 32 32"><path d="M4 28h24M7 28V14l9-8 9 8v14"/><path d="M13 28v-8h6v8"/></symbol>
+    <symbol id="i-data" viewBox="0 0 32 32"><ellipse cx="16" cy="7" rx="10" ry="3.5"/><path d="M6 7v18c0 2 4.5 3.5 10 3.5S26 27 26 25V7M6 16c0 2 4.5 3.5 10 3.5S26 18 26 16"/></symbol>
+    <symbol id="i-people" viewBox="0 0 32 32"><circle cx="11" cy="10" r="4"/><path d="M3 26c0-5 3.6-8 8-8s8 3 8 8"/><path d="M20 15l4 4 5-7"/></symbol>
+    <symbol id="i-school" viewBox="0 0 32 32"><path d="m2 12 14-6 14 6-14 6-14-6Z"/><path d="M8 15v7c2.5 2.3 5 3 8 3s5.5-.7 8-3v-7M28 13v9"/></symbol>
+    <symbol id="i-yes" viewBox="0 0 32 32"><path d="m7 16.5 6 6L25 10"/></symbol>
+    <symbol id="i-no" viewBox="0 0 32 32"><path d="m9 9 14 14M23 9 9 23"/></symbol>
+    <symbol id="i-part" viewBox="0 0 32 32"><path d="M8 16h16"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 32 32"><path d="M5 16h21M18 8l8 8-8 8"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 32 32"><path d="m12 7 9 9-9 9"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 32 32"><path d="M7 29V4M7 5h17l-4 6 4 6H7"/></symbol>
+    <symbol id="i-users" viewBox="0 0 32 32"><circle cx="12" cy="11" r="4.5"/><path d="M3 27c0-5 4-8.5 9-8.5s9 3.5 9 8.5M21 6.5a4.5 4.5 0 0 1 0 9M24 19c3 1 5 3.8 5 8"/></symbol>
+    <symbol id="i-key" viewBox="0 0 32 32"><circle cx="10" cy="20" r="6"/><path d="m14.5 15.5 12-12M22 8l4 4M18.5 11.5l3 3"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 32 32"><path d="M3 5h4l3 15h15l3-10H9"/><circle cx="12" cy="26" r="2"/><circle cx="23" cy="26" r="2"/></symbol>
+    <symbol id="i-sheet" viewBox="0 0 32 32"><path d="M5 5h22v22H5V5Z"/><path d="M5 12h22M5 19h22M13 5v22"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 32 32"><path d="M8 22V14a8 8 0 0 1 16 0v8l2 3H6l2-3Z"/><path d="M13 28h6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 32 32"><path d="M16 3v7M16 22v7M3 16h7M22 16h7M7 7l5 5M20 20l5 5M25 7l-5 5M12 20l-5 5"/></symbol>
+    <symbol id="logo-mark" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#0D2321"/><rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="#5ED3B5" stroke-opacity=".28" stroke-width="1.2"/><path d="M17 44V29a7.5 7.5 0 0 1 15 0v15M32 29a7.5 7.5 0 0 1 15 0v15" fill="none" stroke="#F2F5F4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M49 12.5c.5 3.2 1.8 4.5 5 5-3.2.5-4.5 1.8-5 5-.5-3.2-1.8-4.5-5-5 3.2-.5 4.5-1.8 5-5Z" fill="#5ED3B5"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 32 32"><path d="M5 12h18v7a7 7 0 0 1-7 7h-4a7 7 0 0 1-7-7v-7Z"/><path d="M23 14h2a3 3 0 0 1 0 6h-2M10 4v4M15 3v5M20 4v4"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 32 32"><path d="M8 11a8 8 0 0 1 16 0v15a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V11Z"/><path d="M12 6V4h8v2M12 18h8v5h-8z"/></symbol>
+    <symbol id="i-lamp" viewBox="0 0 32 32"><path d="M9 28h14M16 28V18l-6-8"/><path d="M6 6l8 2-4 7-6-3 2-6Z"/><path d="M12 16l3 3"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 32 32"><path d="M10 10h16v18H10z"/><path d="M6 22V4h14"/></symbol>
+    <symbol id="i-link" viewBox="0 0 32 32"><path d="M13 19l6-6"/><path d="M11 14 8 17a4.2 4.2 0 0 0 6 6l3-3M21 18l3-3a4.2 4.2 0 0 0-6-6l-3 3"/></symbol>
+    <symbol id="i-google" viewBox="0 0 32 32"><circle cx="14" cy="14" r="9"/><path d="m21 21 7 7"/></symbol>
+    <symbol id="i-blog" viewBox="0 0 32 32"><path d="M6 4h20v24H6z"/><path d="M10 10h12M10 15h12M10 20h7"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></symbol>
+  </defs>
+</svg>
+<div id="app"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="../assets/demo/kaffo.js" defer></script>
+<script src="../assets/demo/treko.js" defer></script>
+<script src="../assets/demo/luma.js" defer></script>
+<script src="../assets/demo/brief.js" defer></script>
+<script src="panel.js" defer></script>
+</body>
+</html>
