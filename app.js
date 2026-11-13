@@ -193,71 +193,110 @@
     const copyBtn = (txt, label = 'Kopiuj') => `<button type="button" class="cpy" data-copy="${esc(txt)}">${icon('i-copy')}<span>${label}</span></button>`;
     const ICONS = { cup: 'i-cup', bag: 'i-bag', lamp: 'i-lamp' };
     const form = $('#demoForm', demo), input = $('#demoUrl', demo), steps = $('#demoSteps', demo), out = $('#demoOut', demo), note = $('#demoNote', demo);
-    let cur = P[0], tab = 'google', mailI = 0, previewI = 0, timer;
+    let cur = P[0], tab = 'facts', metaLen = 'medium', mailSub = 'subjects', bodyLen = 'standard', previewI = 0, timer;
 
+    const fc = (f) => f ? `<span class="fx">${f.split(',').map((x) => `<a href="#" data-fact="${x}">F${x.slice(1)}</a>`).join('')}</span>` : `<span class="fx fx--none">bez faktu</span>`;
     const productCard = (p) => `
       <div class="pc__img"><img src="assets/prod-${p.id}.jpg" alt="${esc(p.short)}" width="600" height="600"></div>
       <p class="pc__cat">${esc(p.category)}</p>
       <h3>${esc(p.name)}</h3>
       <p class="pc__price">${esc(p.price)}</p>
-      <dl class="pc__facts">${p.facts.map(([a, b]) => `<div><dt>${esc(a)}</dt><dd>${esc(b)}</dd></div>`).join('')}</dl>
+      <p class="pc__stat"><b>${p.facts.length}</b> potwierdzonych faktów · <b>${p.missing.length}</b> braki</p>
       <p class="pc__h">Dla kogo</p><p class="pc__aud">${esc(p.audience)}</p>
-      <p class="pc__h">Kluczowe korzyści</p><ul class="pc__ben">${p.benefits.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
       <p class="pc__src">Źródło: ${esc(p.url.replace('https://', ''))}</p>`;
 
     const rsa = (p) => {
-      const h = p.google.headlines, d = p.google.descriptions, n = h.length;
-      const i = previewI % n;
-      return `<div class="serp"><p class="serp__ad"><b>Sponsorowane</b> · sklep-demo.pl</p><p class="serp__h">${esc(h[i])} | ${esc(h[(i + 4) % n])} | ${esc(h[(i + 9) % n])}</p><p class="serp__d">${esc(d[previewI % d.length])}</p></div>`;
+      const h = p.google.headlines.map((x) => x[0]), d = p.google.descriptions.map((x) => x[0]), n = h.length, i = previewI % n;
+      return `<div class="serp"><p class="serp__ad"><b>Sponsorowane</b> · sklep-demo.pl</p><p class="serp__h">${esc(h[i])} | ${esc(h[(i + 4) % n])} | ${esc(h[(i + 9) % n])}</p><p class="serp__d">${esc(d[previewI % d.length])}</p>
+        <p class="serp__sl">${p.google.sitelinks.map((s) => `<span>${esc(s[0])}</span>`).join('')}</p><p class="serp__co">${p.google.callouts.map((c) => esc(c[0])).join(' · ')}</p></div>`;
     };
+    const rows = (arr, max) => `<ol class="rows">${arr.map((r) => { const t = r[0], f = r[r.length - 1]; return `<li><span class="rows__t">${esc(t)}</span>${fc(f)}${max ? cnt(t, max) : ''}${copyBtn(t)}</li>`; }).join('')}</ol>`;
+    const H = (t, s) => `<h4 class="ob__h">${t}${s ? ` <small>${s}</small>` : ''}</h4>`;
+    const LEN = { short: 'Krótka', medium: 'Średnia', long: 'Długa' };
+    const MSUB = { subjects: 'Tematy', pre: 'Preheadery', heads: 'Nagłówki i hasła', ctas: 'Przyciski CTA', body: 'Treść maila', seq: 'Sekwencje', ab: 'Plan testów A/B' };
+    const BODY = { short: 'Krótka', standard: 'Standardowa', long: 'Rozbudowana' };
+    const seg = (map, curV, attr, label) => `<div class="seg" role="group" aria-label="${label}">${Object.entries(map).map(([k, v]) => `<button type="button" data-${attr}="${k}" aria-pressed="${k === curV}">${v}</button>`).join('')}</div>`;
 
     const views = {
-      google: (p) => `
-        <div class="ob__bar"><h3>Reklama elastyczna w wyszukiwarce</h3><div class="ob__acts"><button type="button" class="pill pill--ghost pill--sm" id="rsaNext">Inny wariant podglądu</button><button type="button" class="pill pill--accent pill--sm" id="csvBtn">Pobierz CSV do Google Ads Editor</button></div></div>
+      facts: (p) => `
+        <div class="ob__bar"><h3>Karta faktów</h3><div class="ob__acts">${copyBtn(p.facts.map((f) => `F${f.id.slice(1)} ${f.label}: ${f.value} (${f.src})`).join('\n'), 'Kopiuj fakty')}</div></div>
+        <p class="ob__lead">Wszystko, co system przeczytał na stronie produktu. Każda treść w pozostałych zakładkach ma znacznik faktu, z którego wynika. Kliknij znacznik, a wrócisz tutaj do źródła.</p>
+        <div class="facts">${p.facts.map((f) => `<article class="fact" id="fact-${f.id}"><span class="fact__n">F${f.id.slice(1)}</span><div><p class="fact__l">${esc(f.label)}</p><p class="fact__v">${esc(f.value)}</p><p class="fact__q"><small>${esc(f.src)}</small> „${esc(f.quote)}”</p></div></article>`).join('')}</div>
+        <div class="miss">${H('Czego brakuje na stronie produktu', 'system tego nie wymyśla')}<ul>${p.missing.map((m) => `<li>${esc(m)}</li>`).join('')}</ul><p>Te informacje nie pojawią się w żadnej treści, dopóki ich nie uzupełnisz.</p></div>`,
+      google: (p) => { const g = p.google; return `
+        <div class="ob__bar"><h3>Kampania w wyszukiwarce Google</h3><div class="ob__acts"><button type="button" class="pill pill--ghost pill--sm" id="rsaNext">Inny wariant podglądu</button><button type="button" class="pill pill--accent pill--sm" id="csvBtn">Pobierz CSV do Google Ads Editor</button></div></div>
         <div id="rsaBox">${rsa(p)}</div>
-        <h4 class="ob__h">Nagłówki <small>${p.google.headlines.length} z 15 · limit 30 znaków</small></h4>
-        <ol class="rows">${p.google.headlines.map((h) => `<li><span class="rows__t">${esc(h)}</span>${cnt(h, 30)}${copyBtn(h)}</li>`).join('')}</ol>
-        <h4 class="ob__h">Opisy <small>4 z 4 · limit 90 znaków</small></h4>
-        <ol class="rows">${p.google.descriptions.map((h) => `<li><span class="rows__t">${esc(h)}</span>${cnt(h, 90)}${copyBtn(h)}</li>`).join('')}</ol>
-        <div class="kw"><div><h4 class="ob__h">Słowa kluczowe</h4><p class="tags">${p.google.keywords.map((k) => `<span>${esc(k)}</span>`).join('')}</p></div>
-        <div><h4 class="ob__h">Wykluczające</h4><p class="tags tags--neg">${p.google.negative.map((k) => `<span>−${esc(k)}</span>`).join('')}</p></div></div>`,
-      meta: (p) => `
-        <div class="ob__bar"><h3>Reklamy na Facebooku i Instagramie</h3><div class="ob__acts">${copyBtn(p.meta.map((m) => `[${m.angle}]\n${m.text}\nNagłówek: ${m.headline}`).join('\n\n'), 'Kopiuj wszystkie')}</div></div>
-        <div class="fbs">${p.meta.map((m) => `<article class="fb">
-          <p class="fb__angle">Kąt: ${esc(m.angle)}</p>
+        ${H('Grupy reklam', `${g.groups.length} grupy według intencji`)}
+        <div class="groups">${g.groups.map((x) => `<article class="grp"><b>${esc(x.name)}</b><small>${esc(x.intent)}</small><ul>${x.kw.map(([k, m]) => `<li><span>${esc(k)}</span><em>${esc(m)}</em></li>`).join('')}</ul></article>`).join('')}</div>
+        ${H('Nagłówki', '15 z 15 · limit 30 znaków')}${rows(g.headlines, 30)}
+        ${H('Opisy', '4 z 4 · limit 90 znaków')}${rows(g.descriptions, 90)}
+        ${H('Linki do podstron', 'limit 25 / 35 znaków')}
+        <div class="sls">${g.sitelinks.map((s) => `<div class="sl"><b>${esc(s[0])}</b> ${cnt(s[0], 25)}<span>${esc(s[1])}</span><span>${esc(s[2])}</span></div>`).join('')}</div>
+        <div class="kw"><div>${H('Objaśnienia', 'limit 25 znaków')}${rows(g.callouts, 25)}</div>
+        <div>${H('Rozszerzenie informacji', esc(g.snippet[0]))}<p class="tags">${g.snippet[1].map((k) => `<span>${esc(k)}</span>`).join('')}</p>
+        ${H('Słowa wykluczające')}<p class="tags tags--neg">${g.negative.map((k) => `<span>−${esc(k)}</span>`).join('')}</p></div></div>`; },
+      meta: (p) => { const m = p.meta; return `
+        <div class="ob__bar"><h3>Reklamy na Facebooku i Instagramie</h3><div class="ob__acts">${seg(LEN, metaLen, 'len', 'Długość tekstu')}${copyBtn(m.angles.map((a) => `[${a.angle}]\n${a[metaLen]}`).join('\n\n'), 'Kopiuj wszystkie')}</div></div>
+        <p class="ob__lead">${m.angles.length} kątów sprzedażowych, każdy w 3 długościach. Długość zmienisz przyciskami powyżej.</p>
+        <div class="fbs">${m.angles.map((a, i) => `<article class="fb">
+          <p class="fb__angle">Kąt: ${esc(a.angle)} ${fc(a.f)}</p>
           <header><span class="fb__av">SD</span><div><b>Sklep Demo</b><small>Sponsorowane</small></div></header>
-          <p class="fb__txt">${esc(m.text).replace(/\n/g, '<br>')}</p>
-          <div class="fb__img"><img src="assets/prod-${p.id}.jpg" alt="" width="600" height="600"></div>
-          <footer><div><small>sklep-demo.pl</small><b>${esc(m.headline)}</b></div><span class="fb__cta">${esc(m.cta)}</span></footer>
-          <div class="fb__copy">${copyBtn(m.text + '\n\nNagłówek: ' + m.headline)}</div>
-        </article>`).join('')}</div>`,
+          <p class="fb__txt">${esc(a[metaLen]).replace(/\n/g, '<br>')}</p>
+          <div class="fb__img"><img src="assets/prod-${p.id}.jpg" alt="" width="600" height="600" loading="lazy"></div>
+          <footer><div><small>sklep-demo.pl</small><b>${esc(m.headlines[i][0])}</b></div><span class="fb__cta">Kup teraz</span></footer>
+          <div class="fb__copy">${copyBtn(a[metaLen] + '\n\nNagłówek: ' + m.headlines[i][0])}</div>
+        </article>`).join('')}</div>
+        ${H('Nagłówki reklam', `${m.headlines.length} wariantów · limit 40 znaków`)}${rows(m.headlines, 40)}
+        ${H('Opisy linku')}${rows(m.linkDesc, 30)}
+        <div class="kw"><div>${H('Grupy odbiorców')}<ul class="lst">${m.audiences.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        <div>${H('Scenariusz Reels / Stories', '10 sekund')}<ol class="lst lst--num">${m.reels.map((x) => `<li>${esc(x)}</li>`).join('')}</ol></div></div>`; },
       desc: (p) => {
-        const d = p.description;
-        const html = `<h1>${d.title}</h1>\n<p>${d.short}</p>\n` + d.sections.map(([h, t]) => `<h2>${h}</h2>\n<p>${t}</p>`).join('\n') + `\n<h2>Najczęstsze pytania</h2>\n` + d.faq.map(([q, a]) => `<h3>${q}</h3>\n<p>${a}</p>`).join('\n');
+        const d = p.description, s = d.seo, spec = p.facts.filter((f) => f.id !== 'f16');
+        const html = `<h1>${d.titles[0][1]}</h1>\n<p>${d.intro}</p>\n` + d.sections.map(([h, t]) => `<h2>${h}</h2>\n<p>${t}</p>`).join('\n') + `\n<h2>Specyfikacja</h2>\n<table>\n${spec.map((f) => `<tr><th>${f.label}</th><td>${f.value}</td></tr>`).join('\n')}\n</table>\n<h2>Najczęstsze pytania</h2>\n` + d.faq.map(([q, a]) => `<h3>${q}</h3>\n<p>${a}</p>`).join('\n');
         return `
         <div class="ob__bar"><h3>Opis produktu do sklepu</h3><div class="ob__acts">${copyBtn(html, 'Kopiuj HTML')}</div></div>
-        <div class="seo"><p class="seo__h">Podgląd w Google</p><p class="seo__t">${esc(d.metaTitle)}</p><p class="seo__u">sklep-demo.pl › ${esc(p.id)}</p><p class="seo__d">${esc(d.metaDesc)}</p>
-          <p class="seo__c">Meta title ${cnt(d.metaTitle, 60)} · Meta description ${cnt(d.metaDesc, 160)}</p></div>
-        <article class="doc"><h4>${esc(d.title)}</h4><p class="doc__lead">${esc(d.short)}</p>
-          ${d.sections.map(([h, t]) => `<h5>${esc(h)}</h5><p>${esc(t)}</p>`).join('')}
-          <h5>Najczęstsze pytania</h5>${d.faq.map(([q, a]) => `<p><b>${esc(q)}</b><br>${esc(a)}</p>`).join('')}</article>`;
+        ${H('Tytuły produktu', '3 wersje pod kanały')}
+        <ol class="rows">${d.titles.map(([l, t], i) => `<li><span class="rows__t"><small class="rows__l">${esc(l)}</small>${esc(t)}</span>${i === 1 ? cnt(t, 75) : ''}${copyBtn(t)}</li>`).join('')}</ol>
+        <div class="seo"><p class="seo__h">Podgląd w Google</p><p class="seo__t">${esc(s.metaTitle)}</p><p class="seo__u">sklep-demo.pl${esc(s.url)}</p><p class="seo__d">${esc(s.metaDesc)}</p>
+          <p class="seo__c">Meta title ${cnt(s.metaTitle, 60)} · Meta description ${cnt(s.metaDesc, 160)}</p></div>
+        <article class="doc"><h4>${esc(d.titles[0][1])}</h4>
+          <p class="doc__k">Krótki opis</p><p class="doc__lead">${esc(d.short)}</p>
+          <p class="doc__k">Wstęp</p><p>${esc(d.intro)}</p>
+          ${d.sections.map(([h, t, f]) => `<h5>${esc(h)} ${fc(f)}</h5><p>${esc(t)}</p>`).join('')}
+          <h5>Cecha → korzyść</h5><div class="tblw"><table class="tbl"><tbody>${d.benefits.map(([a, b, f]) => `<tr><th>${esc(a)}</th><td>${esc(b)}</td><td>${fc(f)}</td></tr>`).join('')}</tbody></table></div>
+          <h5>Specyfikacja</h5><div class="tblw"><table class="tbl"><tbody>${spec.map((f) => `<tr><th>${esc(f.label)}</th><td>${esc(f.value)}</td><td>${fc(f.id)}</td></tr>`).join('')}</tbody></table></div>
+          <h5>Dla kogo</h5><p>${esc(d.forWho)}</p>
+          <h5>Co wyróżnia produkt</h5><ul class="lst">${d.standout.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+          <h5>Najczęstsze pytania (${d.faq.length})</h5>${d.faq.map(([q, a, f]) => `<p><b>${esc(q)}</b> ${fc(f)}<br>${esc(a)}</p>`).join('')}
+        </article>
+        <div class="kw"><div>${H('Słowa kluczowe SEO', 'i gdzie je umieścić')}<ul class="lst">${s.keywords.map(([k, w]) => `<li><b>${esc(k)}</b> · ${esc(w)}</li>`).join('')}</ul></div>
+        <div>${H('Teksty alternatywne zdjęć')}<ul class="lst">${s.alts.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div></div>`;
       },
       mail: (p) => {
-        const m = p.mailing[mailI];
-        return `
-        <div class="ob__bar"><h3>Mailingi i sekwencje</h3><div class="ob__acts">${copyBtn(`Temat: ${m.subject}\nPreheader: ${m.preheader}\n\n${m.body}`, 'Kopiuj ten mail')}</div></div>
-        <div class="mails"><div class="mails__list" role="tablist" aria-label="Maile w sekwencji">${p.mailing.map((x, i) => `<button type="button" role="tab" aria-selected="${i === mailI}" data-mail="${i}"><b>${esc(x.name)}</b><small>${esc(x.subject)}</small></button>`).join('')}</div>
-        <article class="mail"><header><p><small>Temat</small><b>${esc(m.subject)}</b></p><p><small>Preheader</small>${esc(m.preheader)}</p></header>
-          <div class="mail__body">${esc(m.body).replace(/\[(.+?)\]/g, '').trim().replace(/\n/g, '<br>')}<p><span class="mail__cta">${esc(m.cta)}</span></p></div></article></div>`;
+        const m = p.mailing;
+        const sub = {
+          subjects: () => `${H('Tematy maili', `${m.subjects.length} wariantów w 5 stylach`)}<ol class="rows">${m.subjects.map(([t, st, f]) => `<li><span class="rows__t"><small class="rows__l">${esc(st)}</small>${esc(t)}</span>${fc(f)}${cnt(t, 50)}${copyBtn(t)}</li>`).join('')}</ol>`,
+          pre: () => `${H('Preheadery', `${m.preheaders.length} wariantów · zalecane do 60 znaków`)}${rows(m.preheaders, 60)}`,
+          heads: () => `${H('Nagłówki w treści', m.headlines.length + ' wariantów')}${rows(m.headlines)}${H('Hasła', m.slogans.length + ' wariantów')}${rows(m.slogans)}`,
+          ctas: () => `${H('Przyciski CTA', m.ctas.length + ' wariantów')}<p class="ctas">${m.ctas.map((c) => `<span class="mail__cta">${esc(c)}</span>`).join('')}</p>`,
+          body: () => `<div class="ob__sub">${seg(BODY, bodyLen, 'body', 'Długość maila')}${copyBtn(`Temat: ${m.subjects[0][0]}\nPreheader: ${m.preheaders[0][0]}\n\n${m.body[bodyLen]}`, 'Kopiuj mail')}</div>
+            <article class="mail"><header><p><small>Temat</small><b>${esc(m.subjects[0][0])}</b></p><p><small>Preheader</small>${esc(m.preheaders[0][0])}</p></header>
+            <div class="mail__body">${esc(m.body[bodyLen]).replace(/\[(.+?)\]/g, '<span class="mail__cta">$1</span>').replace(/\n/g, '<br>')}</div></article>`,
+          seq: () => m.sequences.map((s) => `<article class="seq">${H(esc(s.name), 'cel: ' + esc(s.goal))}<ol>${s.emails.map(([w, t, ph, d, f]) => `<li><span class="seq__w">${esc(w)}</span><div><b>${esc(t)}</b><small>${esc(ph)}</small><p>${esc(d)}</p>${fc(f)}</div></li>`).join('')}</ol></article>`).join(''),
+          ab: () => `${H('Plan testów A/B', 'najpierw tematy, potem przyciski')}<ol class="lst lst--num">${m.ab.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>`
+        };
+        return `<div class="ob__bar"><h3>Mailing</h3></div>
+        <div class="mtabs" role="group" aria-label="Elementy mailingu">${Object.entries(MSUB).map(([k, v]) => `<button type="button" data-msub="${k}" aria-pressed="${k === mailSub}">${v}</button>`).join('')}</div>
+        ${sub[mailSub]()}`;
       },
       blog: (p) => {
         const b = p.blog;
         return `
-        <div class="ob__bar"><h3>Artykuły na bloga</h3><div class="ob__acts">${copyBtn(`${b.title}\n\n${b.intro}\n\n` + b.outline.map((o) => '## ' + o).join('\n'), 'Kopiuj szkic')}</div></div>
-        <h4 class="ob__h">Pomysły na tematy</h4>
-        <ol class="ideas">${b.ideas.map((x, i) => `<li class="${i === 0 ? 'is-on' : ''}">${esc(x)}</li>`).join('')}</ol>
+        <div class="ob__bar"><h3>Artykuły na bloga</h3><div class="ob__acts">${copyBtn(`${b.title}\n\n${b.intro}\n\n` + b.outline.map(([h, x]) => `## ${h}\n- ${x}`).join('\n'), 'Kopiuj szkic')}</div></div>
+        ${H('Pomysły na tematy', b.ideas.length + ' propozycji')}
+        <ol class="ideas">${b.ideas.map(([t, k], i) => `<li class="${i === 0 ? 'is-on' : ''}"><span>${esc(t)}</span><small>${esc(k)}</small></li>`).join('')}</ol>
         <article class="doc"><h4>${esc(b.title)}</h4><p class="seo__c">Meta description ${cnt(b.metaDesc, 160)}</p><p class="doc__lead">${esc(b.intro)}</p>
-          <p class="pc__h">Struktura artykułu</p><ol class="outline">${b.outline.map((o) => `<li>${esc(o)}</li>`).join('')}</ol>
+          <p class="pc__h">Struktura artykułu</p><ol class="outline">${b.outline.map(([h, x]) => `<li><b>${esc(h)}</b><small>${esc(x)}</small></li>`).join('')}</ol>
           <p class="doc__note">W pełnej wersji system pisze cały artykuł (1 200–1 800 słów) z linkiem do produktu i sekcją FAQ.</p></article>`;
       }
     };
@@ -267,7 +306,7 @@
       demo.querySelectorAll('.otabs [role=tab]').forEach((t) => t.setAttribute('aria-selected', t.dataset.tab === tab));
     };
     const show = (p) => {
-      cur = p; mailI = 0; previewI = 0;
+      cur = p; previewI = 0;
       $('#demoProduct', demo).innerHTML = productCard(p);
       demo.querySelectorAll('.dchip').forEach((c) => c.setAttribute('aria-pressed', c.dataset.p === p.id));
       renderTab();
@@ -291,13 +330,17 @@
     demo.addEventListener('click', (e) => {
       const chip = e.target.closest('.dchip'); if (chip) { run(P.find((p) => p.id === chip.dataset.p)); return; }
       const t = e.target.closest('.otabs [role=tab]'); if (t) { tab = t.dataset.tab; renderTab(); return; }
-      const m = e.target.closest('[data-mail]'); if (m) { mailI = +m.dataset.mail; renderTab(); return; }
+      const fx = e.target.closest('[data-fact]'); if (fx) { e.preventDefault(); tab = 'facts'; renderTab(); const el = $('#fact-' + fx.dataset.fact, demo); if (el) { el.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }); el.classList.add('is-hl'); setTimeout(() => el.classList.remove('is-hl'), 1600); } return; }
+      const sg = e.target.closest('[data-len],[data-msub],[data-body]'); if (sg) { if (sg.dataset.len) metaLen = sg.dataset.len; if (sg.dataset.msub) mailSub = sg.dataset.msub; if (sg.dataset.body) bodyLen = sg.dataset.body; renderTab(); return; }
       if (e.target.closest('#rsaNext')) { previewI++; $('#rsaBox', demo).innerHTML = rsa(cur); return; }
       if (e.target.closest('#csvBtn')) {
         const g = cur.google, q = (s) => `"${String(s).replace(/"/g, '""')}"`;
-        const head = ['Campaign', 'Ad group', ...g.headlines.map((_, i) => `Headline ${i + 1}`), ...g.descriptions.map((_, i) => `Description ${i + 1}`), 'Final URL'];
-        const row = ['MODERA demo', cur.short, ...g.headlines, ...g.descriptions, cur.url];
-        const blob = new Blob(['﻿' + head.map(q).join(',') + '\n' + row.map(q).join(',') + '\n'], { type: 'text/csv;charset=utf-8' });
+        const H1 = g.headlines.map((x) => x[0]), D1 = g.descriptions.map((x) => x[0]);
+        const head = ['Campaign', 'Ad group', 'Keyword', 'Criterion Type', ...H1.map((_, i) => 'Headline ' + (i + 1)), ...D1.map((_, i) => 'Description ' + (i + 1)), 'Final URL'];
+        const MT = { fraza: 'Phrase', 'ścisłe': 'Exact', 'przybliżone': 'Broad' };
+        const lines = [head.map(q).join(',')];
+        g.groups.forEach((gr) => { lines.push(['MODERA demo', gr.name, '', '', ...H1, ...D1, cur.url].map(q).join(',')); gr.kw.forEach(([k, m]) => lines.push(['MODERA demo', gr.name, k.replace(/[[\]]/g, ''), MT[m] || 'Broad', ...H1.map(() => ''), ...D1.map(() => ''), ''].map(q).join(','))); });
+        const blob = new Blob(['﻿' + lines.join('\n') + '\n'], { type: 'text/csv;charset=utf-8' });
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `google-ads-${cur.id}.csv`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
         return;
       }
