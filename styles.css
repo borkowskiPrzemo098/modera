@@ -1604,3 +1604,5 @@ svg.core__mark{width:84px;height:84px;background:none;box-shadow:none;border-rad
   .stylep__row{grid-template-columns:1fr auto}
   .stylep__row small{grid-column:1/-1}
 }
+
+@media (max-width:640px){.bars li{grid-template-columns:90px minmax(0,1fr) 70px}.cmp--plans td{overflow-wrap:anywhere;hyphens:auto;font-size:.8rem}}
