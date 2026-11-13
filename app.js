@@ -193,7 +193,7 @@
     const copyBtn = (txt, label = 'Kopiuj') => `<button type="button" class="cpy" data-copy="${esc(txt)}">${icon('i-copy')}<span>${label}</span></button>`;
     const ICONS = { cup: 'i-cup', bag: 'i-bag', lamp: 'i-lamp' };
     const form = $('#demoForm', demo), input = $('#demoUrl', demo), steps = $('#demoSteps', demo), out = $('#demoOut', demo), note = $('#demoNote', demo);
-    let cur = P[0], tab = 'facts', metaLen = 'medium', mailSub = 'subjects', bodyLen = 'standard', previewI = 0, timer;
+    let cur = P[0], tab = 'facts', metaLen = 'medium', stage = 'cold', style = 'rzeczowy', styleLen = 'short', mailSub = 'subjects', bodyLen = 'standard', previewI = 0, timer;
 
     const fc = (f) => f ? `<span class="fx">${f.split(',').map((x) => `<a href="#" data-fact="${x}">F${x.slice(1)}</a>`).join('')}</span>` : `<span class="fx fx--none">bez faktu</span>`;
     const productCard = (p) => `
@@ -217,7 +217,43 @@
     const BODY = { short: 'Krótka', standard: 'Standardowa', long: 'Rozbudowana' };
     const seg = (map, curV, attr, label) => `<div class="seg" role="group" aria-label="${label}">${Object.entries(map).map(([k, v]) => `<button type="button" data-${attr}="${k}" aria-pressed="${k === curV}">${v}</button>`).join('')}</div>`;
 
+    const B = window.MODERA_BRIEF || {};
+    const STG = { cold: 'Zimny odbiorca', warm: 'Rozważa zakup', cart: 'Porzucił koszyk' };
+    const STY = { rzeczowy: 'Rzeczowy', opisowy: 'Opisowy', zabawny: 'Zabawny', premium: 'Premium', ekspercki: 'Ekspercki', cieply: 'Ciepły' };
+    const STL = { short: 'Krótko i prosto', long: 'Rozbudowanie' };
     const views = {
+      brief: (p) => {
+        const b = B[p.id]; if (!b) return '';
+        const s = b.stages[stage];
+        return `
+        <div class="ob__bar"><h3>Brief strategiczny</h3><div class="ob__acts">${seg(STG, stage, 'stage', 'Etap zakupu')}</div></div>
+        <p class="ob__lead">Zanim powstanie jedno zdanie, system ustala strategię: do kogo mówi, z jakim problemem, co obiecuje i czym to udowadnia. Zmień etap zakupu, a strategia się zmieni.</p>
+        <div class="brief">
+          <div class="brief__hero"><p class="bvoice__k">Główna obietnica</p><p class="brief__promise">${esc(s.promise[0])}</p>${fc(s.promise[1])}
+            <dl class="brief__meta"><div><dt>Cel</dt><dd>${esc(s.goal)}</dd></div><div><dt>Do kogo</dt><dd>${esc(b.persona)}</dd></div><div><dt>Problem klienta</dt><dd>${esc(s.problem)}</dd></div></dl></div>
+          <section class="brief__box"><h4>Dowody</h4><ul class="brief__list">${s.proofs.map(([t, f]) => `<li><span>${esc(t)}</span>${fc(f)}</li>`).join('')}</ul></section>
+          <section class="brief__box"><h4>Obiekcje i odpowiedzi</h4>${s.obj.map(([o, a, f]) => `<p class="brief__obj"><b>${esc(o)}</b><span>→ ${esc(a)}</span>${fc(f)}</p>`).join('')}</section>
+          <section class="brief__box brief__box--wide"><h4>Wybrane kąty i dlaczego</h4><div class="brief__angles">${s.angles.map(([n, w, f]) => `<article><b>${esc(n)}</b><p>${esc(w)}</p>${fc(f)}</article>`).join('')}</div></section>
+          <section class="brief__box"><h4>Kanały</h4><p>${esc(s.channels)}</p><h4>Wezwanie do działania</h4><p><span class="mail__cta">${esc(s.cta)}</span></p></section>
+          <section class="brief__box brief__box--warn"><h4>Czego unikamy</h4><ul class="lst">${b.avoid.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></section>
+        </div>`;
+      },
+      style: (p) => {
+        const b = B[p.id]; if (!b) return '';
+        const cur = b.styles[style];
+        return `
+        <div class="ob__bar"><h3>Styl i długość</h3><div class="ob__acts">${seg(STL, styleLen, 'slen', 'Długość')}</div></div>
+        <p class="ob__lead">Ten sam brief, te same fakty, inny sposób powiedzenia. Styl zmienia formę, nigdy treści merytorycznej.</p>
+        ${seg(STY, style, 'style', 'Styl tekstu')}
+        <article class="stylep">
+          <div class="stylep__row"><small>Nagłówek reklamy</small><b>${esc(cur.h)}</b>${cnt(cur.h, 30)}</div>
+          <div class="stylep__row"><small>Temat maila</small><b>${esc(cur.s)}</b></div>
+          <p class="stylep__txt">${esc(cur[styleLen])}</p>
+          <div class="stylep__foot"><span>Fakty, na których oparto ten styl:</span>${fc(cur.f)}${copyBtn(`${cur.h}\n${cur.s}\n\n${cur[styleLen]}`)}</div>
+        </article>
+        ${H('Porównanie wszystkich stylów', 'wersja krótka')}
+        <div class="stylegrid">${Object.entries(b.styles).map(([k, v]) => `<button type="button" class="stylec ${k === style ? 'is-on' : ''}" data-style="${k}"><small>${STY[k]}</small><span>${esc(v.short)}</span></button>`).join('')}</div>`;
+      },
       facts: (p) => `
         <div class="ob__bar"><h3>Karta faktów</h3><div class="ob__acts">${copyBtn(p.facts.map((f) => `F${f.id.slice(1)} ${f.label}: ${f.value} (${f.src})`).join('\n'), 'Kopiuj fakty')}</div></div>
         <p class="ob__lead">Wszystko, co system przeczytał na stronie produktu. Każda treść w pozostałych zakładkach ma znacznik faktu, z którego wynika. Kliknij znacznik, a wrócisz tutaj do źródła.</p>
@@ -331,7 +367,7 @@
       const chip = e.target.closest('.dchip'); if (chip) { run(P.find((p) => p.id === chip.dataset.p)); return; }
       const t = e.target.closest('.otabs [role=tab]'); if (t) { tab = t.dataset.tab; renderTab(); return; }
       const fx = e.target.closest('[data-fact]'); if (fx) { e.preventDefault(); tab = 'facts'; renderTab(); const el = $('#fact-' + fx.dataset.fact, demo); if (el) { el.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }); el.classList.add('is-hl'); setTimeout(() => el.classList.remove('is-hl'), 1600); } return; }
-      const sg = e.target.closest('[data-len],[data-msub],[data-body]'); if (sg) { if (sg.dataset.len) metaLen = sg.dataset.len; if (sg.dataset.msub) mailSub = sg.dataset.msub; if (sg.dataset.body) bodyLen = sg.dataset.body; renderTab(); return; }
+      const sg = e.target.closest('[data-len],[data-msub],[data-body],[data-stage],[data-style],[data-slen]'); if (sg) { if (sg.dataset.stage) stage = sg.dataset.stage; if (sg.dataset.style) style = sg.dataset.style; if (sg.dataset.slen) styleLen = sg.dataset.slen; if (sg.dataset.len) metaLen = sg.dataset.len; if (sg.dataset.msub) mailSub = sg.dataset.msub; if (sg.dataset.body) bodyLen = sg.dataset.body; renderTab(); return; }
       if (e.target.closest('#rsaNext')) { previewI++; $('#rsaBox', demo).innerHTML = rsa(cur); return; }
       if (e.target.closest('#csvBtn')) {
         const g = cur.google, q = (s) => `"${String(s).replace(/"/g, '""')}"`;
