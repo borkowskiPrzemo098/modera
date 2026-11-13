@@ -313,6 +313,13 @@
     show(start); input.value = start.url;
   }
 
+  /* ---------- comparison bars ---------- */
+  const bars = $('.bars');
+  if (bars && !reduce && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-anim');
+    new IntersectionObserver(([en], o) => { if (en.isIntersecting) { bars.classList.add('is-in'); o.disconnect(); } }, { threshold: .4 }).observe(bars);
+  }
+
   /* ---------- pricing billing toggle ---------- */
   const bill = $('#billToggle');
   if (bill) {
