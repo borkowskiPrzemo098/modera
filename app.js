@@ -182,6 +182,147 @@
     redraw();
   }
 
+  /* ---------- DEMO: generator treści (dane przygotowane z góry) ---------- */
+  const demo = $('#demoApp');
+  if (demo && window.MODERA_DEMO) {
+    const P = window.MODERA_DEMO;
+    const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const len = (s) => [...s].length;
+    const cnt = (s, max) => `<span class="cc ${len(s) > max ? 'cc--bad' : ''}">${len(s)}/${max}</span>`;
+    const copyBtn = (txt, label = 'Kopiuj') => `<button type="button" class="cpy" data-copy="${esc(txt)}">${icon('i-copy')}<span>${label}</span></button>`;
+    const ICONS = { cup: 'i-cup', bag: 'i-bag', lamp: 'i-lamp' };
+    const form = $('#demoForm', demo), input = $('#demoUrl', demo), steps = $('#demoSteps', demo), out = $('#demoOut', demo), note = $('#demoNote', demo);
+    let cur = P[0], tab = 'google', mailI = 0, previewI = 0, timer;
+
+    const productCard = (p) => `
+      <div class="pc__img"><svg class="ic" aria-hidden="true"><use href="#${ICONS[p.icon]}"/></svg></div>
+      <p class="pc__cat">${esc(p.category)}</p>
+      <h3>${esc(p.name)}</h3>
+      <p class="pc__price">${esc(p.price)}</p>
+      <dl class="pc__facts">${p.facts.map(([a, b]) => `<div><dt>${esc(a)}</dt><dd>${esc(b)}</dd></div>`).join('')}</dl>
+      <p class="pc__h">Dla kogo</p><p class="pc__aud">${esc(p.audience)}</p>
+      <p class="pc__h">Kluczowe korzyści</p><ul class="pc__ben">${p.benefits.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
+      <p class="pc__src">Źródło: ${esc(p.url.replace('https://', ''))}</p>`;
+
+    const rsa = (p) => {
+      const h = p.google.headlines, d = p.google.descriptions, n = h.length;
+      const i = previewI % n;
+      return `<div class="serp"><p class="serp__ad"><b>Sponsorowane</b> · sklep-demo.pl</p><p class="serp__h">${esc(h[i])} | ${esc(h[(i + 4) % n])} | ${esc(h[(i + 9) % n])}</p><p class="serp__d">${esc(d[previewI % d.length])}</p></div>`;
+    };
+
+    const views = {
+      google: (p) => `
+        <div class="ob__bar"><h3>Reklama elastyczna w wyszukiwarce</h3><div class="ob__acts"><button type="button" class="pill pill--ghost pill--sm" id="rsaNext">Inny wariant podglądu</button><button type="button" class="pill pill--accent pill--sm" id="csvBtn">Pobierz CSV do Google Ads Editor</button></div></div>
+        <div id="rsaBox">${rsa(p)}</div>
+        <h4 class="ob__h">Nagłówki <small>${p.google.headlines.length} z 15 · limit 30 znaków</small></h4>
+        <ol class="rows">${p.google.headlines.map((h) => `<li><span class="rows__t">${esc(h)}</span>${cnt(h, 30)}${copyBtn(h)}</li>`).join('')}</ol>
+        <h4 class="ob__h">Opisy <small>4 z 4 · limit 90 znaków</small></h4>
+        <ol class="rows">${p.google.descriptions.map((h) => `<li><span class="rows__t">${esc(h)}</span>${cnt(h, 90)}${copyBtn(h)}</li>`).join('')}</ol>
+        <div class="kw"><div><h4 class="ob__h">Słowa kluczowe</h4><p class="tags">${p.google.keywords.map((k) => `<span>${esc(k)}</span>`).join('')}</p></div>
+        <div><h4 class="ob__h">Wykluczające</h4><p class="tags tags--neg">${p.google.negative.map((k) => `<span>−${esc(k)}</span>`).join('')}</p></div></div>`,
+      meta: (p) => `
+        <div class="ob__bar"><h3>Reklamy na Facebooku i Instagramie</h3><div class="ob__acts">${copyBtn(p.meta.map((m) => `[${m.angle}]\n${m.text}\nNagłówek: ${m.headline}`).join('\n\n'), 'Kopiuj wszystkie')}</div></div>
+        <div class="fbs">${p.meta.map((m) => `<article class="fb">
+          <p class="fb__angle">Kąt: ${esc(m.angle)}</p>
+          <header><span class="fb__av">SD</span><div><b>Sklep Demo</b><small>Sponsorowane</small></div></header>
+          <p class="fb__txt">${esc(m.text).replace(/\n/g, '<br>')}</p>
+          <div class="fb__img"><svg class="ic" aria-hidden="true"><use href="#${ICONS[p.icon]}"/></svg></div>
+          <footer><div><small>sklep-demo.pl</small><b>${esc(m.headline)}</b></div><span class="fb__cta">${esc(m.cta)}</span></footer>
+          <div class="fb__copy">${copyBtn(m.text + '\n\nNagłówek: ' + m.headline)}</div>
+        </article>`).join('')}</div>`,
+      desc: (p) => {
+        const d = p.description;
+        const html = `<h1>${d.title}</h1>\n<p>${d.short}</p>\n` + d.sections.map(([h, t]) => `<h2>${h}</h2>\n<p>${t}</p>`).join('\n') + `\n<h2>Najczęstsze pytania</h2>\n` + d.faq.map(([q, a]) => `<h3>${q}</h3>\n<p>${a}</p>`).join('\n');
+        return `
+        <div class="ob__bar"><h3>Opis produktu do sklepu</h3><div class="ob__acts">${copyBtn(html, 'Kopiuj HTML')}</div></div>
+        <div class="seo"><p class="seo__h">Podgląd w Google</p><p class="seo__t">${esc(d.metaTitle)}</p><p class="seo__u">sklep-demo.pl › ${esc(p.id)}</p><p class="seo__d">${esc(d.metaDesc)}</p>
+          <p class="seo__c">Meta title ${cnt(d.metaTitle, 60)} · Meta description ${cnt(d.metaDesc, 160)}</p></div>
+        <article class="doc"><h4>${esc(d.title)}</h4><p class="doc__lead">${esc(d.short)}</p>
+          ${d.sections.map(([h, t]) => `<h5>${esc(h)}</h5><p>${esc(t)}</p>`).join('')}
+          <h5>Najczęstsze pytania</h5>${d.faq.map(([q, a]) => `<p><b>${esc(q)}</b><br>${esc(a)}</p>`).join('')}</article>`;
+      },
+      mail: (p) => {
+        const m = p.mailing[mailI];
+        return `
+        <div class="ob__bar"><h3>Mailingi i sekwencje</h3><div class="ob__acts">${copyBtn(`Temat: ${m.subject}\nPreheader: ${m.preheader}\n\n${m.body}`, 'Kopiuj ten mail')}</div></div>
+        <div class="mails"><div class="mails__list" role="tablist" aria-label="Maile w sekwencji">${p.mailing.map((x, i) => `<button type="button" role="tab" aria-selected="${i === mailI}" data-mail="${i}"><b>${esc(x.name)}</b><small>${esc(x.subject)}</small></button>`).join('')}</div>
+        <article class="mail"><header><p><small>Temat</small><b>${esc(m.subject)}</b></p><p><small>Preheader</small>${esc(m.preheader)}</p></header>
+          <div class="mail__body">${esc(m.body).replace(/\[(.+?)\]/g, '').trim().replace(/\n/g, '<br>')}<p><span class="mail__cta">${esc(m.cta)}</span></p></div></article></div>`;
+      },
+      blog: (p) => {
+        const b = p.blog;
+        return `
+        <div class="ob__bar"><h3>Artykuły na bloga</h3><div class="ob__acts">${copyBtn(`${b.title}\n\n${b.intro}\n\n` + b.outline.map((o) => '## ' + o).join('\n'), 'Kopiuj szkic')}</div></div>
+        <h4 class="ob__h">Pomysły na tematy</h4>
+        <ol class="ideas">${b.ideas.map((x, i) => `<li class="${i === 0 ? 'is-on' : ''}">${esc(x)}</li>`).join('')}</ol>
+        <article class="doc"><h4>${esc(b.title)}</h4><p class="seo__c">Meta description ${cnt(b.metaDesc, 160)}</p><p class="doc__lead">${esc(b.intro)}</p>
+          <p class="pc__h">Struktura artykułu</p><ol class="outline">${b.outline.map((o) => `<li>${esc(o)}</li>`).join('')}</ol>
+          <p class="doc__note">W pełnej wersji system pisze cały artykuł (1 200–1 800 słów) z linkiem do produktu i sekcją FAQ.</p></article>`;
+      }
+    };
+
+    const renderTab = () => {
+      $('#demoPanel', demo).innerHTML = views[tab](cur);
+      demo.querySelectorAll('.otabs [role=tab]').forEach((t) => t.setAttribute('aria-selected', t.dataset.tab === tab));
+    };
+    const show = (p) => {
+      cur = p; mailI = 0; previewI = 0;
+      $('#demoProduct', demo).innerHTML = productCard(p);
+      demo.querySelectorAll('.dchip').forEach((c) => c.setAttribute('aria-pressed', c.dataset.p === p.id));
+      renderTab();
+    };
+    const run = (p, msg) => {
+      clearTimeout(timer); input.value = p.url; note.hidden = !msg; if (msg) note.textContent = msg;
+      out.classList.add('is-loading'); steps.hidden = false;
+      const li = [...steps.querySelectorAll('li')]; li.forEach((x) => x.className = '');
+      const step = reduce ? 0 : 520;
+      li.forEach((x, i) => setTimeout(() => { li.forEach((y, j) => { y.className = j < i ? 'is-done' : j === i ? 'is-now' : ''; }); }, i * step));
+      timer = setTimeout(() => { li.forEach((y) => y.className = 'is-done'); out.classList.remove('is-loading'); show(p); }, li.length * step + 80);
+    };
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = input.value.trim().toLowerCase();
+      const hit = P.find((p) => v.includes(p.id) || v === p.url);
+      if (hit) run(hit);
+      else run(cur, 'W wersji demo treści powstają tylko dla trzech przykładowych produktów. Pełna wersja przeczyta dowolny link z Twojego sklepu.');
+    });
+    demo.addEventListener('click', (e) => {
+      const chip = e.target.closest('.dchip'); if (chip) { run(P.find((p) => p.id === chip.dataset.p)); return; }
+      const t = e.target.closest('.otabs [role=tab]'); if (t) { tab = t.dataset.tab; renderTab(); return; }
+      const m = e.target.closest('[data-mail]'); if (m) { mailI = +m.dataset.mail; renderTab(); return; }
+      if (e.target.closest('#rsaNext')) { previewI++; $('#rsaBox', demo).innerHTML = rsa(cur); return; }
+      if (e.target.closest('#csvBtn')) {
+        const g = cur.google, q = (s) => `"${String(s).replace(/"/g, '""')}"`;
+        const head = ['Campaign', 'Ad group', ...g.headlines.map((_, i) => `Headline ${i + 1}`), ...g.descriptions.map((_, i) => `Description ${i + 1}`), 'Final URL'];
+        const row = ['MODERA demo', cur.short, ...g.headlines, ...g.descriptions, cur.url];
+        const blob = new Blob(['﻿' + head.map(q).join(',') + '\n' + row.map(q).join(',') + '\n'], { type: 'text/csv;charset=utf-8' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `google-ads-${cur.id}.csv`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        return;
+      }
+      const c = e.target.closest('.cpy');
+      if (c) {
+        const done = () => { const s = c.querySelector('span'); const o = s.textContent; c.classList.add('is-ok'); s.textContent = 'Skopiowano'; setTimeout(() => { c.classList.remove('is-ok'); s.textContent = o; }, 1400); };
+        (navigator.clipboard ? navigator.clipboard.writeText(c.dataset.copy) : Promise.reject()).then(done, () => {
+          const ta = document.createElement('textarea'); ta.value = c.dataset.copy; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch {} ta.remove();
+        });
+      }
+    });
+    const start = P.find((p) => location.hash === '#' + p.id) || P[0];
+    show(start); input.value = start.url;
+  }
+
+  /* ---------- pricing billing toggle ---------- */
+  const bill = $('#billToggle');
+  if (bill) {
+    bill.addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      const yearly = b.dataset.bill === 'year';
+      bill.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+      document.querySelectorAll('[data-m]').forEach((el) => { el.textContent = yearly ? el.dataset.y : el.dataset.m; });
+      document.querySelectorAll('.bill-note').forEach((el) => { el.textContent = yearly ? 'netto / mies., płatne rocznie' : 'netto / mies.'; });
+    });
+  }
+
   /* ---------- pricing estimator ---------- */
   const est = $('#est');
   if (est) {

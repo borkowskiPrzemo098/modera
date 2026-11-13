@@ -52,6 +52,13 @@
     <symbol id="i-bell" viewBox="0 0 32 32"><path d="M8 22V14a8 8 0 0 1 16 0v8l2 3H6l2-3Z"/><path d="M13 28h6"/></symbol>
     <symbol id="i-spark" viewBox="0 0 32 32"><path d="M16 3v7M16 22v7M3 16h7M22 16h7M7 7l5 5M20 20l5 5M25 7l-5 5M12 20l-5 5"/></symbol>
     <symbol id="logo-mark" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#0D2321"/><path d="M15 46V18l17 19 17-19v28" fill="none" stroke="#5ED3B5" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="46" r="4.3" fill="#F2F5F4"/><circle cx="15" cy="18" r="4.3" fill="#F2F5F4"/><circle cx="49" cy="18" r="4.3" fill="#F2F5F4"/><circle cx="49" cy="46" r="4.3" fill="#F2F5F4"/><circle cx="32" cy="37" r="9" fill="#5ED3B5" fill-opacity=".22"/><circle cx="32" cy="37" r="5.6" fill="#5ED3B5"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 32 32"><path d="M5 12h18v7a7 7 0 0 1-7 7h-4a7 7 0 0 1-7-7v-7Z"/><path d="M23 14h2a3 3 0 0 1 0 6h-2M10 4v4M15 3v5M20 4v4"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 32 32"><path d="M8 11a8 8 0 0 1 16 0v15a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V11Z"/><path d="M12 6V4h8v2M12 18h8v5h-8z"/></symbol>
+    <symbol id="i-lamp" viewBox="0 0 32 32"><path d="M9 28h14M16 28V18l-6-8"/><path d="M6 6l8 2-4 7-6-3 2-6Z"/><path d="M12 16l3 3"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 32 32"><path d="M10 10h16v18H10z"/><path d="M6 22V4h14"/></symbol>
+    <symbol id="i-link" viewBox="0 0 32 32"><path d="M13 19l6-6"/><path d="M11 14 8 17a4.2 4.2 0 0 0 6 6l3-3M21 18l3-3a4.2 4.2 0 0 0-6-6l-3 3"/></symbol>
+    <symbol id="i-google" viewBox="0 0 32 32"><circle cx="14" cy="14" r="9"/><path d="m21 21 7 7"/></symbol>
+    <symbol id="i-blog" viewBox="0 0 32 32"><path d="M6 4h20v24H6z"/><path d="M10 10h12M10 15h12M10 20h7"/></symbol>
     <symbol id="i-clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></symbol>
   </defs>
 </svg>
@@ -62,14 +69,14 @@
       <svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg><span class="brand__word">modera</span>
     </a>
     <nav class="nav" id="nav" aria-label="Główna nawigacja">
-      <a href="index.html#uslugi" data-nav="uslugi">Usługi</a>
-      <a href="rozwiazania.html" data-nav="rozwiazania" aria-current="page">Rozwiązania</a>
+      <a href="index.html#narzedzia" data-nav="narzedzia">Narzędzia</a>
+      <a href="demo.html" data-nav="demo">Demo</a>
       <a href="cennik.html" data-nav="cennik">Cennik</a>
       <a href="o-mnie.html" data-nav="o-mnie">O mnie</a>
       <a href="faq.html" data-nav="faq">FAQ</a>
-      <a class="nav__cta" href="#kontakt">Umów rozmowę</a>
+      <a class="nav__cta" href="demo.html">Wypróbuj demo</a>
     </nav>
-    <a class="pill pill--accent pill--sm bar__cta" href="#kontakt">Umów rozmowę</a>
+    <a class="pill pill--accent pill--sm bar__cta" href="demo.html">Wypróbuj demo</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Otwórz menu"><span></span><span></span></button>
   </div>
 </header>
@@ -342,11 +349,12 @@
   <div class="wrap">
     <div class="cta">
       <div class="cta__copy">
-        <h2 id="cta-h">Zgłoś pomysł dziś. Za pięć dni roboczych odbierasz działający prototyp.</h2>
-        <p>30 minut rozmowy wideo, bez prezentacji sprzedażowej. Opowiadasz o problemie, a my mówimy wprost, czy AI go rozwiąże.</p>
+        <h2 id="cta-h">Zobacz efekt na własnych produktach.</h2>
+        <p>Zapisz się na wczesny dostęp. Odezwiemy się w ciągu jednego dnia roboczego, założymy konto i przygotujemy treści dla 3 Twoich produktów, żebyś zobaczył efekt na własnym sklepie.</p>
       </div>
       <div class="cta__card">
-        <a class="pill pill--light pill--lg pill--block" href="mailto:kontakt@modera.pl?subject=Bezp%C5%82atna%20rozmowa%20%E2%80%94%20prototyp%20w%205%20dni">Umów 30 minut rozmowy</a>
+        <a class="pill pill--light pill--lg pill--block" href="mailto:kontakt@modera.pl?subject=Wczesny%20dost%C4%99p%20do%20MODERA">Zapisz się na wczesny dostęp</a>
+        <a class="pill pill--outline-light pill--block" href="demo.html">Najpierw zobacz demo</a>
         <dl>
           <div><dt>E-mail</dt><dd><a href="mailto:kontakt@modera.pl">kontakt@modera.pl</a></dd></div>
           <div><dt>Telefon</dt><dd><a href="tel:+48792668083">+48 792 668 083</a></dd></div>
@@ -362,15 +370,16 @@
   <div class="wrap foot__grid">
     <div>
       <a class="brand" href="index.html"><svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg><span class="brand__word">modera</span></a>
-      <p class="foot__about">Budujemy narzędzia AI, dashboardy i portale dla polskich firm. Prototyp w 5 dni roboczych, a wszystko, co zbudujemy, należy do Ciebie.</p>
+      <p class="foot__about">Reklamy Google i Facebook, opisy produktów, mailingi i artykuły na bloga z jednego linku do produktu. Po polsku, w limitach znaków, w tonie Twojej marki.</p>
       <p class="foot__contact"><a href="mailto:kontakt@modera.pl">kontakt@modera.pl</a><a href="tel:+48792668083">+48 792 668 083</a></p>
     </div>
-    <nav aria-label="Usługi"><p class="foot__h">Usługi</p><a href="index.html#portal">Prototyp i portal AI</a><a href="index.html#dashboard">Dashboard AI</a><a href="index.html#leady">Leady i widoczność w AI</a><a href="index.html#szkolenia">Szkolenia i AI Act</a><a href="rozwiazania.html">Katalog rozwiązań</a></nav>
-    <nav aria-label="Firma"><p class="foot__h">Firma</p><a href="cennik.html">Cennik</a><a href="o-mnie.html">O mnie</a><a href="index.html#tydzien">Jak pracujemy</a><a href="faq.html">FAQ</a><a href="#kontakt">Kontakt</a></nav>
+    <nav aria-label="Produkt"><p class="foot__h">Produkt</p><a href="index.html#narzedzia">Narzędzia</a><a href="demo.html">Demo</a><a href="cennik.html">Cennik</a><a href="index.html#jak-to-dziala">Jak to działa</a><a href="rozwiazania.html">Wdrożenia na zamówienie</a></nav>
+    <nav aria-label="Firma"><p class="foot__h">Firma</p><a href="o-mnie.html">O mnie</a><a href="faq.html">FAQ</a><a href="#kontakt">Kontakt</a></nav>
     <nav aria-label="Dokumenty"><p class="foot__h">Dokumenty</p><a href="regulamin.html">Regulamin</a><a href="polityka-prywatnosci.html">Polityka prywatności</a></nav>
   </div>
   <div class="wrap foot__legal"><span>© 2026 MODERA · [nazwa firmy, NIP, adres — do uzupełnienia]</span><span>Strona nie używa plików cookies ani narzędzi śledzących.</span></div>
 </footer>
+
 
 <script src="app.js" defer></script>
 </body>

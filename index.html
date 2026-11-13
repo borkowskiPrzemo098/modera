@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MODERA — narzędzia AI dla firm. Prototyp w 5 dni roboczych</title>
-<meta name="description" content="Budujemy narzędzia AI, dashboardy i firmowe portale. Działający prototyp w 5 dni roboczych za 0 zł. Kod, dane i konta należą do Ciebie.">
+<title>MODERA — reklamy, opisy produktów i mailingi z jednego linku</title>
+<meta name="description" content="Wklej link do produktu i dostań gotowe reklamy Google i Facebook, opis do sklepu, mailingi i artykuły na bloga. Po polsku, w limitach znaków, w tonie Twojej marki.">
 <link rel="canonical" href="https://borkowskiprzemo098.github.io/modera/">
 <meta name="theme-color" content="#FBFBFD">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pl_PL">
-<meta property="og:title" content="MODERA — narzędzia AI dla firm. Prototyp w 5 dni roboczych">
-<meta property="og:description" content="Budujemy narzędzia AI, dashboardy i firmowe portale. Działający prototyp w 5 dni roboczych za 0 zł. Kod, dane i konta należą do Ciebie.">
+<meta property="og:title" content="MODERA — reklamy, opisy produktów i mailingi z jednego linku">
+<meta property="og:description" content="Wklej link do produktu i dostań gotowe reklamy Google i Facebook, opis do sklepu, mailingi i artykuły na bloga. Po polsku, w limitach znaków, w tonie Twojej marki.">
 <meta property="og:image" content="https://borkowskiprzemo098.github.io/modera/assets/og.jpg">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/satoshi-900.woff2" as="font" type="font/woff2" crossorigin>
@@ -52,6 +52,13 @@
     <symbol id="i-bell" viewBox="0 0 32 32"><path d="M8 22V14a8 8 0 0 1 16 0v8l2 3H6l2-3Z"/><path d="M13 28h6"/></symbol>
     <symbol id="i-spark" viewBox="0 0 32 32"><path d="M16 3v7M16 22v7M3 16h7M22 16h7M7 7l5 5M20 20l5 5M25 7l-5 5M12 20l-5 5"/></symbol>
     <symbol id="logo-mark" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#0D2321"/><path d="M15 46V18l17 19 17-19v28" fill="none" stroke="#5ED3B5" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="46" r="4.3" fill="#F2F5F4"/><circle cx="15" cy="18" r="4.3" fill="#F2F5F4"/><circle cx="49" cy="18" r="4.3" fill="#F2F5F4"/><circle cx="49" cy="46" r="4.3" fill="#F2F5F4"/><circle cx="32" cy="37" r="9" fill="#5ED3B5" fill-opacity=".22"/><circle cx="32" cy="37" r="5.6" fill="#5ED3B5"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 32 32"><path d="M5 12h18v7a7 7 0 0 1-7 7h-4a7 7 0 0 1-7-7v-7Z"/><path d="M23 14h2a3 3 0 0 1 0 6h-2M10 4v4M15 3v5M20 4v4"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 32 32"><path d="M8 11a8 8 0 0 1 16 0v15a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V11Z"/><path d="M12 6V4h8v2M12 18h8v5h-8z"/></symbol>
+    <symbol id="i-lamp" viewBox="0 0 32 32"><path d="M9 28h14M16 28V18l-6-8"/><path d="M6 6l8 2-4 7-6-3 2-6Z"/><path d="M12 16l3 3"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 32 32"><path d="M10 10h16v18H10z"/><path d="M6 22V4h14"/></symbol>
+    <symbol id="i-link" viewBox="0 0 32 32"><path d="M13 19l6-6"/><path d="M11 14 8 17a4.2 4.2 0 0 0 6 6l3-3M21 18l3-3a4.2 4.2 0 0 0-6-6l-3 3"/></symbol>
+    <symbol id="i-google" viewBox="0 0 32 32"><circle cx="14" cy="14" r="9"/><path d="m21 21 7 7"/></symbol>
+    <symbol id="i-blog" viewBox="0 0 32 32"><path d="M6 4h20v24H6z"/><path d="M10 10h12M10 15h12M10 20h7"/></symbol>
     <symbol id="i-clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></symbol>
   </defs>
 </svg>
@@ -62,14 +69,14 @@
       <svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg><span class="brand__word">modera</span>
     </a>
     <nav class="nav" id="nav" aria-label="Główna nawigacja">
-      <a href="index.html#uslugi" data-nav="uslugi">Usługi</a>
-      <a href="rozwiazania.html" data-nav="rozwiazania">Rozwiązania</a>
+      <a href="index.html#narzedzia" data-nav="narzedzia">Narzędzia</a>
+      <a href="demo.html" data-nav="demo">Demo</a>
       <a href="cennik.html" data-nav="cennik">Cennik</a>
       <a href="o-mnie.html" data-nav="o-mnie">O mnie</a>
       <a href="faq.html" data-nav="faq">FAQ</a>
-      <a class="nav__cta" href="#kontakt">Umów rozmowę</a>
+      <a class="nav__cta" href="demo.html">Wypróbuj demo</a>
     </nav>
-    <a class="pill pill--accent pill--sm bar__cta" href="#kontakt">Umów rozmowę</a>
+    <a class="pill pill--accent pill--sm bar__cta" href="demo.html">Wypróbuj demo</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Otwórz menu"><span></span><span></span></button>
   </div>
 </header>
@@ -78,357 +85,167 @@
 <section class="hero" aria-labelledby="hero-h">
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="wrap hero__copy">
-    <h1 id="hero-h">Narzędzie AI dla Twojej firmy. <span class="accent">Gotowe w&nbsp;5&nbsp;dni.</span> Twoje na&nbsp;zawsze.</h1>
-    <p class="hero__lead">Powiedz nam, co w firmie zabiera najwięcej czasu. W pięć dni roboczych zbudujemy działający prototyp na Twoich danych, za darmo. Kod, dane i konta od początku należą do Ciebie.</p>
+    <h1 id="hero-h">Wklej link do produktu. <span class="accent">Dostań gotowy marketing.</span></h1>
+    <p class="hero__lead">MODERA czyta stronę produktu i pisze reklamy Google i Facebook, opis do sklepu, mailingi i artykuły na bloga. Po polsku, w limitach znaków, w tonie Twojej marki. Zamiast dnia pracy copywritera masz komplet w minutę.</p>
     <div class="hero__actions">
-      <a class="pill pill--accent pill--lg" href="#kontakt">Umów bezpłatną rozmowę</a>
-      <a class="textlink" href="#uslugi">Zobacz, co budujemy <svg class="ic"><use href="#i-chev"/></svg></a>
+      <a class="pill pill--accent pill--lg" href="demo.html">Wypróbuj demo</a>
+      <a class="textlink" href="cennik.html">Zobacz abonamenty <svg class="ic"><use href="#i-chev"/></svg></a>
     </div>
     <div class="phero__meta hero__tags">
-      <span class="tag"><svg class="ic"><use href="#i-clock"/></svg>Prototyp w 5 dni roboczych</span>
-      <span class="tag"><svg class="ic"><use href="#i-users"/></svg>Bez opłat za użytkownika</span>
-      <span class="tag"><svg class="ic"><use href="#i-key"/></svg>Kod i dane na własność</span>
+      <span class="tag"><svg class="ic"><use href="#i-google"/></svg>Google Ads w limitach znaków</span>
+      <span class="tag"><svg class="ic"><use href="#i-yes"/></svg>Tylko fakty z Twojej strony</span>
+      <span class="tag"><svg class="ic"><use href="#i-plug"/></svg>Eksport do Google Ads Editor</span>
     </div>
   </div>
 
   <div class="wrap">
-    <div class="stage">
-      <figure class="pui" aria-label="Podgląd portalu AI na przykładowych danych">
-        <div class="browser__bar"><i></i><i></i><i></i><span>portal.twojafirma.pl</span><em class="pui__demo">Dane przykładowe</em></div>
-        <div class="pui__body">
-          <aside class="pui__nav" aria-hidden="true">
-            <p class="pui__org"><span>TF</span>Twoja Firma</p>
-            <ul>
-              <li class="is-on"><svg class="ic"><use href="#i-stats"/></svg>Pulpit</li>
-              <li><svg class="ic"><use href="#i-funnel"/></svg>Sprzedaż</li>
-              <li><svg class="ic"><use href="#i-cart"/></svg>Zamówienia</li>
-              <li><svg class="ic"><use href="#i-cms"/></svg>Opisy produktów</li>
-              <li><svg class="ic"><use href="#i-ask"/></svg>Asystent AI</li>
-              <li><svg class="ic"><use href="#i-plug"/></svg>Integracje</li>
+    <div class="stage stage--gen">
+      <figure class="gen" aria-label="Podgląd panelu MODERA na przykładowym produkcie">
+        <div class="browser__bar"><i></i><i></i><i></i><span>app.modera.pl</span><em class="pui__demo">Przykładowy produkt</em></div>
+        <div class="gen__url"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg><span class="gen__link">sklep-demo.pl/ekspres-kaffo-barista-15</span><span class="gen__go">Gotowe w 38 s</span></div>
+        <div class="gen__body">
+          <div class="gen__prod">
+            <div class="pc__img"><svg class="ic" aria-hidden="true"><use href="#i-cup"/></svg></div>
+            <b>KAFFO Barista 15</b><span>Ekspres ciśnieniowy z młynkiem · 1 299 zł</span>
+            <ul><li>15 bar</li><li>młynek stożkowy</li><li>spieniacz parowy</li><li>3 lata gwarancji</li></ul>
+          </div>
+          <div class="gen__out">
+            <div class="gen__tabs" aria-hidden="true"><span class="is-on">Google Ads</span><span>Facebook</span><span>Opis</span><span>Mailing</span><span>Blog</span></div>
+            <p class="gen__h">Nagłówki <small>15 z 15</small></p>
+            <ul class="gen__rows">
+              <li>Kawa jak z kawiarni w domu<span class="cc">26/30</span></li>
+              <li>Świeżo mielona kawa<span class="cc">19/30</span></li>
+              <li>Gotowy do pracy w 30 s<span class="cc">22/30</span></li>
+              <li>Spieniacz mleka w zestawie<span class="cc">26/30</span></li>
+              <li>Ekspres z młynkiem 1299 zł<span class="cc">26/30</span></li>
             </ul>
-            <p class="pui__sync"><span class="dot"></span>4 systemy · sync 6:58</p>
-          </aside>
-          <div class="pui__main">
-            <header class="pui__top">
-              <div><small>Czwartek, 7:00 · raport poranny</small><h2 class="pui__hi">Dzień dobry, Anna. Oto co zmieniło się od wczoraj.</h2></div>
-            </header>
-            <div class="pui__kpis">
-              <div><small>Przychód, tydzień</small><b>412 380 zł</b><em class="up">+8,4%</em></div>
-              <div><small>Zamówienia</small><b>1 284</b><em class="up">+5,1%</em></div>
-              <div><small>Marża brutto</small><b>31,2%</b><em class="down">−1,3 pp</em></div>
-              <div><small>Należności po terminie</small><b>86 tys. zł</b><em class="up">−12%</em></div>
-            </div>
-            <div class="pui__grid">
-              <div class="pui__chart">
-                <p>Przychód tygodniowy</p>
-                <div class="pui__bars" aria-hidden="true"><i style="--h:44%"></i><i style="--h:50%"></i><i style="--h:47%"></i><i style="--h:58%"></i><i style="--h:55%"></i><i style="--h:64%"></i><i style="--h:61%"></i><i style="--h:72%"></i><i style="--h:75%"></i><i style="--h:83%"></i><i style="--h:80%"></i><i class="is-hot" style="--h:96%"></i></div>
-              </div>
-              <div class="pui__ai">
-                <p class="pui__ai-h"><svg class="ic"><use href="#i-spark"/></svg>Rekomendacje AI na dziś</p>
-                <ul>
-                  <li><span class="pri pri--hi"></span><div><b>Zadzwoń do 6 stałych klientów</b><small>nie zamówili od 21 dni · lista gotowa</small></div></li>
-                  <li><span class="pri"></span><div><b>Przesuń 1 500 zł na „Akcesoria”</b><small>koszt zamówienia 14,20 zł zamiast 23,90 zł</small></div></li>
-                  <li><span class="pri"></span><div><b>Sprawdź rabaty w 2 regionach</b><small>obniżają marżę o 1,3 pp</small></div></li>
-                </ul>
-              </div>
-            </div>
-            <div class="pui__ask"><svg class="ic"><use href="#i-ask"/></svg><span class="pui__type" id="askType">Dlaczego spadła marża w tym tygodniu?</span><span class="pui__send"><svg class="ic"><use href="#i-arrow"/></svg></span></div>
+            <p class="gen__h">Opis <small>4 z 4</small></p>
+            <ul class="gen__rows">
+              <li>Gotowy do pracy w ok. 30 s. Parowy spieniacz do latte i cappuccino. Zamów teraz.<span class="cc">82/90</span></li>
+            </ul>
+            <div class="gen__export"><span><svg class="ic" aria-hidden="true"><use href="#i-yes"/></svg>Wszystkie limity znaków spełnione</span><span class="gen__btn">Pobierz CSV</span></div>
           </div>
         </div>
       </figure>
 
-      <div class="phone" aria-hidden="true">
-        <div class="phone__notch"></div>
-        <p class="phone__time">7:02</p>
-        <div class="notif">
-          <p class="notif__app"><svg class="lg" aria-hidden="true"><use href="#logo-mark"/></svg>MODERA · teraz</p>
-          <b>6 klientów przestało zamawiać</b>
-          <span>Łączna wartość zamówień: 48 tys. zł / mies. Lista z telefonami jest gotowa.</span>
-        </div>
-        <div class="notif notif--soft">
-          <p class="notif__app"><svg class="lg" aria-hidden="true"><use href="#logo-mark"/></svg>MODERA · 6:30</p>
-          <b>187 opisów produktów czeka</b>
-          <span>Do akceptacji w 6 językach.</span>
-        </div>
+      <div class="float float--fb" aria-hidden="true">
+        <p class="float__title">Facebook · kąt „Problem”</p>
+        <p class="bubble">Masz dość kapsułek i kawy, która smakuje zawsze tak samo? Z ekspresem KAFFO sam decydujesz o smaku.</p>
+        <p class="float__head">Pożegnaj kapsułki <span>Dowiedz się więcej</span></p>
       </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section class="flow" id="jak-to-dziala" aria-labelledby="flow-h">
-  <div class="wrap">
-    <div class="flow__head">
-      <h2 id="flow-h">Twoje systemy wchodzą. <span>Gotowe decyzje wychodzą.</span></h2>
-      <p>Podłączamy to, czego już używasz. AI łączy dane z każdego źródła, pilnuje ich co noc i rano podaje konkretne odpowiedzi, a nie kolejne tabelki.</p>
-    </div>
-    <div class="flow__stage" id="flowStage">
-      <svg class="flow__wires" id="flowWires" aria-hidden="true"></svg>
-      <ul class="flow__in" aria-label="Źródła danych">
-        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-data"/></svg></span><b>ERP i księgowość</b><small>Comarch, Subiekt, Symfonia, enova</small></li>
-        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-cart"/></svg></span><b>Sklep i marketplace</b><small>Shopify, PrestaShop, BaseLinker</small></li>
-        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-users"/></svg></span><b>CRM i sprzedaż</b><small>HubSpot, Pipedrive, zapytania</small></li>
-        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-campaign"/></svg></span><b>Reklamy</b><small>Google Ads, Meta, GA4</small></li>
-        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-sheet"/></svg></span><b>Excel i arkusze</b><small>pliki, które „ktoś aktualizuje”</small></li>
-        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-mail"/></svg></span><b>Poczta i dokumenty</b><small>Outlook, Gmail, KSeF, PDF</small></li>
-      </ul>
-      <div class="core" aria-label="Rdzeń MODERA">
-        <div class="core__ring" aria-hidden="true"></div>
-        <svg class="core__mark" aria-hidden="true"><use href="#logo-mark"/></svg>
-        <b>Twój portal AI</b>
-        <ul class="core__steps">
-          <li><svg class="ic"><use href="#i-plug"/></svg>łączy dane</li>
-          <li><svg class="ic"><use href="#i-spark"/></svg>analizuje co noc</li>
-          <li><svg class="ic"><use href="#i-lock"/></svg>w Twoim środowisku</li>
-        </ul>
-      </div>
-      <div class="flow__out" aria-label="Efekty">
-        <article class="res">
-          <header><span class="res__ic"><svg class="ic"><use href="#i-stats"/></svg></span><b>Raport zarządu</b><time>dziś, 7:00</time></header>
-          <div class="res__kpis"><span><small>Przychód</small><strong>412 tys. zł</strong><em class="up">+8,4%</em></span><span><small>Marża</small><strong>31,2%</strong><em class="down">−1,3 pp</em></span></div>
-        </article>
-        <article class="res res--alert">
-          <header><span class="res__ic"><svg class="ic"><use href="#i-bell"/></svg></span><b>Alert sprzedaży</b><time>teraz</time></header>
-          <p><strong>6 stałych klientów</strong> nie zamówiło od 21 dni. Lista dla handlowców jest gotowa.</p>
-        </article>
-        <article class="res">
-          <header><span class="res__ic"><svg class="ic"><use href="#i-cms"/></svg></span><b>Opisy produktów</b><time>w toku</time></header>
-          <div class="res__bar"><i style="--p:78%"></i></div>
-          <p class="res__meta">187 z 240 gotowych · 6 języków · czeka na akceptację</p>
-        </article>
-      </div>
-    </div>
-    <p class="flow__note">Przykładowe dane. Lista systemów to najczęstsze integracje; podłączamy każde źródło z API lub eksportem.</p>
-  </div>
-</section>
-
-<section class="sec sec--grey" id="problemy" aria-labelledby="prob-h">
-  <div class="wrap">
-    <div class="head">
-      <h2 id="prob-h">Cztery rzeczy, które spowalniają każdą firmę.</h2>
-      <p>Większość firm wie, że AI może przyspieszyć pracę. Nikt jednak nie pokazał, jak to wygląda u nich, na ich danych i w ich procesach.</p>
-    </div>
-    <div class="probs">
-      <article class="prob">
-        <span class="tile-ic"><svg class="ic"><use href="#i-users"/></svg></span>
-        <h3>Każdy używa AI na&nbsp;własną rękę</h3>
-        <p>Prywatne konta ChatGPT, firmowe dane w przypadkowych oknach czatu, a wiedza zostaje w głowach pojedynczych osób.</p>
-        <p class="prob__fix"><svg class="ic"><use href="#i-yes"/></svg>Jeden firmowy portal AI pod Twoją marką, z rolami, logowaniem 2FA i wspólną bazą wiedzy.</p>
-      </article>
-      <article class="prob">
-        <span class="tile-ic"><svg class="ic"><use href="#i-data"/></svg></span>
-        <h3>Dane nie rozmawiają ze&nbsp;sobą</h3>
-        <p>ERP, CRM, sklep, reklamy i Excel pokazują pięć różnych wersji prawdy. Raport dla zarządu składa się ręcznie.</p>
-        <p class="prob__fix"><svg class="ic"><use href="#i-yes"/></svg>Jeden model danych i dashboard, który co rano sam się odświeża i mówi, co się zmieniło.</p>
-      </article>
-      <article class="prob">
-        <span class="tile-ic"><svg class="ic"><use href="#i-key"/></svg></span>
-        <h3>Dostawca trzyma Cię w&nbsp;garści</h3>
-        <p>Opłata za każdego użytkownika, kod, którego nie widzisz, i umowa, z której trudno wyjść.</p>
-        <p class="prob__fix"><svg class="ic"><use href="#i-yes"/></svg>Kod, baza i konta są Twoje od pierwszego dnia. Możesz przejąć całość w każdej chwili.</p>
-      </article>
-      <article class="prob">
-        <span class="tile-ic"><svg class="ic"><use href="#i-clock"/></svg></span>
-        <h3>Miesiące analiz, zero efektu</h3>
-        <p>Prezentacje, warsztaty i strategia, a pierwszego działającego narzędzia jak nie było, tak nie ma.</p>
-        <p class="prob__fix"><svg class="ic"><use href="#i-yes"/></svg>Zamiast prezentacji działający prototyp po pięciu dniach roboczych. Oceniasz go na własnych danych.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="uslugi" aria-labelledby="svc-h">
-  <div class="wrap">
-    <div class="head">
-      <h2 id="svc-h">Co dla Ciebie zbudujemy.</h2>
-      <p>Każda usługa zaczyna się tak samo: od rozmowy i działającego prototypu. Dalej rośnie tylko to, co się sprawdza.</p>
-    </div>
-    <div class="bento">
-      <article class="tile tile--portal" id="portal">
-        <div class="tile__copy">
-          <h3>Firmowy portal, w którym AI pracuje dla zespołu.</h3>
-          <p>Jedno logowanie, Twoje logo i domena. W środku asystent znający firmowe dokumenty, automatyczne opisy produktów, ocena leadów i transkrypcje rozmów.</p>
-          <a class="textlink" href="#moduly">Złóż swój portal z modułów <svg class="ic"><use href="#i-chev"/></svg></a>
-        </div>
-        <div class="tile__media tile__media--video">
-          <video class="lazyvid" muted loop playsinline preload="none" poster="assets/factory.jpg" aria-hidden="true"><source src="assets/factory.mp4" type="video/mp4"></video>
-        </div>
-      </article>
-
-      <article class="tile tile--dark tile--dash" id="dashboard">
-        <div class="tile__copy">
-          <h3>Dziesięć systemów, jedna wersja prawdy.</h3>
-          <p>ERP, księgowość, CRM, sklep i kampanie w jednym modelu danych. Codziennie rano AI opisuje, co się zmieniło i co z tym zrobić.</p>
-          <a class="textlink textlink--light" href="#demo">Zadaj pytanie danym <svg class="ic"><use href="#i-chev"/></svg></a>
-        </div>
-        <div class="dashmini" aria-hidden="true">
-          <div class="dashmini__chart"><span>Przychód, 12 tygodni</span><div class="minibars minibars--dark"><i style="--h:38%"></i><i style="--h:44%"></i><i style="--h:41%"></i><i style="--h:52%"></i><i style="--h:49%"></i><i style="--h:58%"></i><i style="--h:56%"></i><i style="--h:66%"></i><i style="--h:69%"></i><i style="--h:77%"></i><i style="--h:75%"></i><i class="is-hot" style="--h:94%"></i></div></div>
-          <div><span>Marża brutto</span><b>31,2%</b><em class="down">−1,3 pp</em></div>
-          <div><span>Zamówienia</span><b>1 284</b><em class="up">+5,1%</em></div>
-          <div class="dashmini__alert">6 stałych klientów nie zamówiło od 21 dni</div>
-        </div>
-      </article>
-
-      <article class="tile tile--photo" id="leady">
-        <img src="assets/sales.jpg" alt="" loading="lazy" width="1184" height="888">
-        <div class="tile__copy">
-          <h3>Rozmowy z idealnymi klientami.</h3>
-          <p>Nawiązujemy kontakt z decydentami z Twojego konta na LinkedIn. Ty zatwierdzasz wiadomości i prowadzisz rozmowy. Sprawdzamy też, czy ChatGPT i Gemini polecają Twoją firmę.</p>
-          <a class="textlink textlink--light" href="#kontakt">Zapytaj o plan dla Twojej branży <svg class="ic"><use href="#i-chev"/></svg></a>
-        </div>
-      </article>
-
-      <article class="tile tile--photo" id="szkolenia">
-        <img src="assets/workshop.jpg" alt="" loading="lazy" width="1184" height="888">
-        <div class="tile__copy">
-          <h3>Zespół, który wie, co robić z AI.</h3>
-          <p>Warsztaty w Twojej firmie na Twoich przykładach, dla zarządu, sprzedaży, marketingu i IT. Szkolenie z kompetencji AI wymaganych przez art. 4 AI Act.</p>
-          <a class="textlink textlink--light" href="#kontakt">Poproś o program i wycenę <svg class="ic"><use href="#i-chev"/></svg></a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec--grey" id="moduly" aria-labelledby="mod-h">
-  <div class="wrap">
-    <div class="head">
-      <h2 id="mod-h">Złóż swój portal z&nbsp;piętnastu modułów.</h2>
-      <p>Kliknij moduł, a pojawi się w podglądzie portalu. Zaczynasz od tego, czego potrzebujesz dziś. Resztę dokładasz później, bez opłat za użytkowników.</p>
-    </div>
-    <div class="cfg">
-      <div class="cfg__plates" role="group" aria-label="Moduły portalu"></div>
-      <div class="cfg__preview" aria-live="polite">
-        <div class="win">
-          <div class="win__bar"><i></i><i></i><i></i><span>portal.twojafirma.pl</span></div>
-          <div class="win__body">
-            <aside class="win__side">
-              <p class="win__org"><span class="win__logo">TF</span>Twoja Firma</p>
-              <ul class="win__list" id="cfgList"></ul>
-            </aside>
-            <div class="win__main" id="cfgMain"></div>
-          </div>
-        </div>
-        <p class="cfg__count">W portalu: <b id="cfgCount">3</b> z 15 modułów</p>
+      <div class="float float--mail" aria-hidden="true">
+        <p class="float__title">Mailing · temat</p>
+        <b>Kawa jak z kawiarni. Bez wychodzenia z domu</b>
+        <span>3 warianty tematu do testu otwarć</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="tydzien" aria-labelledby="week-h">
+<section class="sec sec--grey" id="narzedzia" aria-labelledby="mod-h">
   <div class="wrap">
     <div class="head">
-      <h2 id="week-h">Od pomysłu do prototypu w&nbsp;jeden tydzień.</h2>
-      <p>Codziennie widzisz postęp. W piątek dostajesz link do działającego narzędzia i sam decydujesz, co dalej.</p>
+      <h2 id="mod-h">Pięć rodzajów treści z&nbsp;jednego linku.</h2>
+      <p>Każdy moduł zna zasady swojego kanału: limity znaków w Google, kąty sprzedażowe na Facebooku, strukturę SEO opisu i sekwencje mailowe.</p>
     </div>
-    <ol class="week">
-      <li class="day"><span class="day__d">Pn</span><h3>Rozmowa i dane</h3><p>Ustalamy problem, cel i źródła danych. Dostajemy dostęp tylko do tego, co potrzebne.</p></li>
-      <li class="day"><span class="day__d">Wt</span><h3>Połączenia</h3><p>Podpinamy systemy i porządkujemy dane w jeden model.</p></li>
-      <li class="day"><span class="day__d">Śr</span><h3>Budowa</h3><p>Interfejs, logika i modele AI dopasowane do Twojego procesu.</p></li>
-      <li class="day"><span class="day__d">Cz</span><h3>Testy z zespołem</h3><p>Twoi ludzie sprawdzają narzędzie na prawdziwych przypadkach.</p></li>
-      <li class="day day--end"><span class="day__d">Pt</span><h3>Odbiór</h3><p>Prezentacja, link do prototypu i decyzja, czy idziemy dalej.</p></li>
+    <div class="mods">
+      <article class="mt mt--wide">
+        <span class="tile-ic"><svg class="ic"><use href="#i-google"/></svg></span>
+        <h3>Reklamy Google Ads</h3>
+        <p>15 nagłówków do 30 znaków, 4 opisy do 90, słowa kluczowe i wykluczające. Gotowy plik CSV do Google Ads Editor.</p>
+        <div class="mt__demo"><span>Ciśnienie 15 bar<em>16/30</em></span><span>Młynek w zestawie<em>17/30</em></span><span>3 lata gwarancji<em>16/30</em></span></div>
+      </article>
+      <article class="mt">
+        <span class="tile-ic"><svg class="ic"><use href="#i-campaign"/></svg></span>
+        <h3>Facebook i Instagram</h3>
+        <p>Teksty główne i nagłówki w 3 kątach: korzyść, problem i oferta. Do testów A/B od pierwszego dnia.</p>
+      </article>
+      <article class="mt">
+        <span class="tile-ic"><svg class="ic"><use href="#i-cms"/></svg></span>
+        <h3>Opis produktu</h3>
+        <p>Tytuł, opis z nagłówkami, korzyści, FAQ, meta title i description. Wersja do sklepu i na Allegro.</p>
+      </article>
+      <article class="mt">
+        <span class="tile-ic"><svg class="ic"><use href="#i-mail"/></svg></span>
+        <h3>Mailing</h3>
+        <p>Kampania produktowa, porzucony koszyk i maile po zakupie. Tematy, preheadery i treść gotowe do wysłania.</p>
+      </article>
+      <article class="mt">
+        <span class="tile-ic"><svg class="ic"><use href="#i-blog"/></svg></span>
+        <h3>Artykuły na bloga</h3>
+        <p>Pomysły na tematy i pełne poradniki z linkiem do produktu. Ruch z Google i z wyszukiwarek AI.</p>
+      </article>
+      <a class="mt mt--cta" href="demo.html">
+        <h3>Zobacz wszystkie na przykładzie</h3>
+        <p>Demo na trzech produktach: ekspres, plecak i lampa.</p>
+        <span class="textlink textlink--light">Otwórz demo <svg class="ic"><use href="#i-chev"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="jak-to-dziala" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="head">
+      <h2 id="how-h">Trzy kroki. Około minuty.</h2>
+      <p>Nie piszesz promptów i nie kopiujesz opisów do czatu. System sam wie, czego potrzebuje każdy kanał.</p>
+    </div>
+    <ol class="steps3">
+      <li><span class="steps3__n">1</span><h3>Wklejasz link</h3><p>Adres produktu z Twojego sklepu. Działa z Shopify, WooCommerce, PrestaShop i większością sklepów.</p></li>
+      <li><span class="steps3__n">2</span><h3>MODERA czyta produkt</h3><p>Nazwa, cena, parametry i korzyści trafiają na kartę produktu. Czego nie znajdzie na stronie, oznacza do uzupełnienia.</p></li>
+      <li class="steps3__end"><span class="steps3__n">3</span><h3>Edytujesz i eksportujesz</h3><p>Poprawiasz, co chcesz, zatwierdzasz i pobierasz: CSV do Google Ads, teksty do Meta, HTML do sklepu i maili.</p></li>
     </ol>
-    <div class="next">
-      <article class="next__card"><span class="next__n">2</span><div><h3>Pierwsza wersja produkcyjna</h3><p>Prototyp się sprawdził? Dostajesz ofertę z zakresem, terminem i ceną. Nic nie podpisujesz przed odbiorem prototypu.</p></div></article>
-      <article class="next__card"><span class="next__n">3</span><div><h3>Utrzymanie i rozwój</h3><p>Hostujemy, monitorujemy i dokładamy moduły. Możemy też przekazać całość Twojemu zespołowi IT.</p></div></article>
-    </div>
   </div>
 </section>
 
-<section class="sec sec--dark" id="demo" aria-labelledby="demo-h">
+<section class="sec sec--dark" aria-labelledby="why-h">
   <div class="wrap">
     <div class="head head--light">
-      <h2 id="demo-h">Zapytaj swoje dane jak współpracownika.</h2>
-      <p>Tak wygląda poranny widok zarządu w Dashboardzie AI. Wybierz pytanie i zobacz odpowiedź. <span class="badge">Dane przykładowe</span></p>
+      <h2 id="why-h">Dlaczego nie zwykły czat z&nbsp;AI?</h2>
+      <p>Czat napisze tekst. MODERA napisze tekst, który od razu wchodzi do kampanii, bez poprawiania i przeliczania znaków.</p>
     </div>
-    <div class="dash">
-      <div class="dash__kpis">
-        <div class="kpi"><span>Przychód, tydzień</span><b>412 380 zł</b><em class="up">+8,4%</em></div>
-        <div class="kpi"><span>Zamówienia</span><b>1 284</b><em class="up">+5,1%</em></div>
-        <div class="kpi"><span>Marża brutto</span><b>31,2%</b><em class="down">−1,3 pp</em></div>
-        <div class="kpi"><span>Koszt pozyskania</span><b>23,90 zł</b><em class="down">+2,40 zł</em></div>
-      </div>
-      <div class="dash__grid">
-        <div class="dash__chart">
-          <p class="dash__label">Przychód tygodniowy, ostatnie 12 tygodni (tys. zł)</p>
-          <svg viewBox="0 0 600 240" class="chart" role="img" aria-label="Wykres słupkowy przychodu z 12 tygodni, rosnący od 318 do 412 tysięcy złotych">
-            <g class="chart__grid"><path d="M40 20H590M40 75H590M40 130H590M40 185H590"/></g>
-            <g class="chart__ax"><text x="34" y="24">450</text><text x="34" y="79">400</text><text x="34" y="134">350</text><text x="34" y="189">300</text></g>
-            <g class="chart__bars" id="bars"></g>
-          </svg>
-        </div>
-        <div class="chat">
-          <div class="chat__head"><span class="chat__av">AI</span><div><b>Asystent danych</b><span>dane z ERP, sklepu i kampanii · wczoraj 23:00</span></div></div>
-          <div class="chat__log" id="chatLog" aria-live="polite">
-            <p class="msg msg--ai">Dzień dobry. Wczorajsze dane są już wczytane. O co chcesz zapytać?</p>
-          </div>
-          <div class="chat__qs" id="chatQs">
-            <button type="button" class="chip" data-q="0">Dlaczego rośnie przychód?</button>
-            <button type="button" class="chip" data-q="1">Co powinno mnie martwić?</button>
-            <button type="button" class="chip" data-q="2">Gdzie przesunąć budżet reklam?</button>
-          </div>
-        </div>
-      </div>
+    <div class="whys">
+      <article><span class="tile-ic"><svg class="ic"><use href="#i-yes"/></svg></span><h3>Pilnuje limitów</h3><p>Każdy nagłówek i opis jest liczony. Nic nie zostanie odrzucone przez Google ani ucięte na Facebooku.</p></article>
+      <article><span class="tile-ic"><svg class="ic"><use href="#i-seo"/></svg></span><h3>Tylko fakty</h3><p>Treści opierają się na danych ze strony produktu. System nie wymyśla rabatów, certyfikatów ani parametrów.</p></article>
+      <article><span class="tile-ic"><svg class="ic"><use href="#i-style"/></svg></span><h3>Twój ton marki</h3><p>Ustawiasz raz: styl, słowa zakazane i obietnice, których nie składasz. Każdy tekst brzmi jak Twoja marka.</p></article>
+      <article><span class="tile-ic"><svg class="ic"><use href="#i-plug"/></svg></span><h3>Gotowe do wgrania</h3><p>CSV do Google Ads Editor, teksty do Menedżera reklam, HTML do sklepu i systemu mailingowego.</p></article>
     </div>
   </div>
 </section>
 
-<section class="sec" id="porownanie" aria-labelledby="cmp-h">
+<section class="sec" aria-labelledby="plans-h">
   <div class="wrap">
     <div class="head">
-      <h2 id="cmp-h">Czym różnimy się od typowych dostawców.</h2>
-      <p>Porównanie najczęstszych modeli współpracy, z którymi firmy przychodzą do nas.</p>
+      <h2 id="plans-h">Abonament dopasowany do sklepu.</h2>
+      <p>Płacisz miesięcznie, bez umowy na czas określony. Każdy pakiet zaczynasz od 7 dni za darmo.</p>
+    </div>
+    <div class="plans">
+      <article class="plan"><h3>Reklamy</h3><p class="plan__for">Google Ads oraz Facebook i Instagram.</p><p class="plan__price"><b>249 zł</b><span>netto / mies.</span></p><ul><li>100 produktów miesięcznie</li><li>Eksport CSV do Google Ads Editor</li><li>1 profil marki</li></ul><a class="pill pill--ghost" href="cennik.html">Szczegóły pakietu</a></article>
+      <article class="plan plan--hot"><span class="plan__badge">Polecany dla sklepów</span><h3>Sklep</h3><p class="plan__for">Reklamy oraz opisy produktów pod SEO.</p><p class="plan__price"><b>449 zł</b><span>netto / mies.</span></p><ul><li>200 produktów miesięcznie</li><li>Opisy do sklepu i na Allegro</li><li>3 profile marki</li></ul><a class="pill pill--light" href="cennik.html">Szczegóły pakietu</a></article>
+      <article class="plan"><h3>Marketing</h3><p class="plan__for">Wszystko: reklamy, opisy, mailingi i blog.</p><p class="plan__price"><b>799 zł</b><span>netto / mies.</span></p><ul><li>300 produktów miesięcznie</li><li>20 artykułów na bloga</li><li>Sekwencje mailowe</li></ul><a class="pill pill--ghost" href="cennik.html">Szczegóły pakietu</a></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--grey" id="porownanie" aria-labelledby="cmp-h">
+  <div class="wrap">
+    <div class="head">
+      <h2 id="cmp-h">Komplet treści do jednego produktu. Porównanie.</h2>
+      <p>Reklamy Google i Facebook, opis produktu i 3 maile. Typowe sposoby pracy obok siebie.</p>
     </div>
     <div class="cmp-wrap" tabindex="0" role="region" aria-label="Tabela porównawcza, przewijana poziomo">
       <table class="cmp">
-        <thead><tr><th scope="col"><span class="sr">Kryterium</span></th><th scope="col" class="us">MODERA</th><th scope="col">Agencja marketingowa</th><th scope="col">Software house</th><th scope="col">Doradca AI</th><th scope="col">Dostawca SaaS</th></tr></thead>
+        <thead><tr><th scope="col"><span class="sr">Kryterium</span></th><th scope="col" class="us">MODERA</th><th scope="col">Copywriter</th><th scope="col">Agencja</th><th scope="col">Czat AI</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Działający prototyp przed podpisaniem umowy</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td></tr>
-          <tr><th scope="row">Narzędzie dopasowane do Twoich procesów</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td></tr>
-          <tr><th scope="row">Kod, dane i konta na Twoją własność</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="nie dotyczy"><use href="#i-part"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td></tr>
-          <tr><th scope="row">Bez opłat za każdego użytkownika</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td></tr>
-          <tr><th scope="row">Łączy dane z wielu systemów</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td></tr>
-          <tr><th scope="row">Pomaga też pozyskiwać klientów</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td></tr>
+          <tr><th scope="row">Czas na jeden produkt</th><td class="us"><b>ok. 1 min</b></td><td>3–5 godz.</td><td>kilka dni</td><td>30–60 min</td></tr>
+          <tr><th scope="row">Pilnuje limitów znaków</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td><td><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td></tr>
+          <tr><th scope="row">Stały ton marki</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td></tr>
+          <tr><th scope="row">Eksport gotowy do kampanii</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td></tr>
+          <tr><th scope="row">Setki produktów w miesiącu</th><td class="us"><svg class="mk mk--yes" role="img" aria-label="tak"><use href="#i-yes"/></svg></td><td><svg class="mk mk--no" role="img" aria-label="nie"><use href="#i-no"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td><td><svg class="mk mk--part" role="img" aria-label="częściowo"><use href="#i-part"/></svg></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="note">Ocena dotyczy typowego modelu współpracy, a nie konkretnych firm.</p>
-  </div>
-</section>
-
-<section class="sec sec--grey" id="realizacje" aria-labelledby="case-h">
-  <div class="wrap">
-    <div class="head">
-      <h2 id="case-h">Przykłady wdrożeń.</h2>
-      <p>Typowe projekty, od których zaczynamy w firmach z handlu, e-commerce i produkcji.</p>
-    </div>
-    <div class="cases">
-      <article class="case">
-        <div class="case__img"><img src="assets/office.jpg" alt="Właściciel hurtowni przegląda raport na laptopie" loading="lazy" width="1184" height="888"><span class="stamp">Wzór · do podmiany</span></div>
-        <div class="case__body">
-          <h3>Poranny raport zarządu zamiast trzech arkuszy.</h3>
-          <p>ERP, CRM i płatności w jednym modelu. Alerty o klientach, którzy przestają zamawiać, i o fakturach po terminie.</p>
-          <p class="case__res"><span>Hurtownia B2B · wynik</span>[do uzupełnienia po wdrożeniu]</p>
-        </div>
-      </article>
-      <article class="case">
-        <div class="case__img"><img src="assets/shop.jpg" alt="Pakowanie zamówień w sklepie internetowym" loading="lazy" width="1264" height="848"><span class="stamp">Wzór · do podmiany</span></div>
-        <div class="case__body">
-          <h3>Opisy produktów w sześciu językach.</h3>
-          <p>AI przygotowuje opisy i atrybuty z karty produktu, człowiek zatwierdza je jednym kliknięciem, a sklep aktualizuje się sam.</p>
-          <p class="case__res"><span>Sklep internetowy · wynik</span>[do uzupełnienia po wdrożeniu]</p>
-        </div>
-      </article>
-      <article class="case">
-        <div class="case__img"><img src="assets/planner.jpg" alt="Planistka produkcji przy harmonogramie na monitorze" loading="lazy" width="1264" height="848"><span class="stamp">Wzór · do podmiany</span></div>
-        <div class="case__body">
-          <h3>Zlecenia, materiały i marża na jednym ekranie.</h3>
-          <p>Planowanie produkcji połączone z magazynem i kosztami. Brygadzista widzi zadania na tablecie, dyrektor widzi marżę na zleceniu.</p>
-          <p class="case__res"><span>Zakład produkcyjny · wynik</span>[do uzupełnienia po wdrożeniu]</p>
-        </div>
-      </article>
-    </div>
+    <p class="note">Czas i zakres dotyczą typowego sposobu pracy, a nie konkretnych firm.</p>
   </div>
 </section>
 
@@ -436,17 +253,15 @@
   <div class="wrap faq">
     <div class="faq__head">
       <h2 id="faq-h">Częste pytania.</h2>
-      <p>Najważniejsze odpowiedzi w skrócie. Pozostałe pytania o ceny, dane i współpracę znajdziesz na stronie FAQ.</p>
+      <p>Najważniejsze odpowiedzi w skrócie. Więcej na stronie FAQ.</p>
       <a class="pill pill--ghost" href="faq.html">Wszystkie pytania</a>
     </div>
     <div class="faq__list">
-      <details open><summary>Gdzie jest haczyk w darmowym prototypie?</summary><p>Nie ma go. Prototyp to nasz sposób, by pokazać, co potrafimy, zamiast obiecywać. Ty poświęcasz kilka godzin na rozmowę i testy, my pięć dni pracy. Jeśli prototyp się nie sprawdzi, rozstajemy się bez kosztów.</p></details>
-      <details><summary>Co dzieje się po odbiorze prototypu?</summary><p>Jeśli chcesz iść dalej, dostajesz ofertę na pierwszą wersję produkcyjną: zakres, termin i cenę. Jeśli nie, zamykamy projekt. Decyzja należy wyłącznie do Ciebie.</p></details>
-      <details><summary>Ile to kosztuje?</summary><p>Prototyp jest bezpłatny. Wersja produkcyjna pojedynczego narzędzia zaczyna się od 9 900 zł netto, a portal AI od 24 900 zł netto. Dokładną wycenę dostajesz przed startem. Nie pobieramy opłat za użytkowników. <a href="cennik.html">Zobacz pełny cennik</a>.</p></details>
-      <details><summary>Czy możemy zakończyć współpracę i zabrać wszystko?</summary><p>Tak. Kod, baza danych, konta i dokumentacja należą do Ciebie. Możesz przejąć całe środowisko w dowolnym momencie, także po zakończeniu umowy.</p></details>
-      <details><summary>Czy nasze dane trafią do trenowania modeli AI?</summary><p>Nie. Korzystamy z firmowych połączeń z dostawcami modeli, których warunki wykluczają trenowanie na Twoich danych. Dane przechowujemy w Twoim środowisku, z kontrolą dostępu dla każdego pracownika.</p></details>
-      <details><summary>Jakich modeli i narzędzi AI używacie?</summary><p>Dobieramy narzędzie do zadania: Claude, ChatGPT, Gemini, Microsoft Copilot albo modele otwarte, które można uruchomić na własnym serwerze. Podłączamy też każde narzędzie, które ma API.</p></details>
-      <details><summary>Czy to jest zgodne z RODO i AI Act?</summary><p>Projektujemy wdrożenia z myślą o RODO i AI Act: minimalizacja danych, role i uprawnienia, rejestr użycia AI, a dla zespołów szkolenie z kompetencji AI zgodnie z art. 4 rozporządzenia.</p></details>
+      <details open><summary>Czy treści są pisane przez AI?</summary><p>Tak. MODERA korzysta z modeli AI, ale prowadzi je według zasad każdego kanału i danych ze strony produktu. Ty zatwierdzasz każdy tekst przed publikacją.</p></details>
+      <details><summary>Z jakimi sklepami to działa?</summary><p>Z większością sklepów, w tym Shopify, WooCommerce, PrestaShop i sklepami na własnym silniku. Wystarczy publiczny link do strony produktu.</p></details>
+      <details><summary>Czy system może coś wymyślić o produkcie?</summary><p>System opiera się tylko na tym, co jest na stronie produktu. Jeśli jakiejś informacji brakuje, oznacza ją do uzupełnienia, zamiast zgadywać.</p></details>
+      <details><summary>Czy mogę zrezygnować w każdej chwili?</summary><p>Tak. Abonament jest miesięczny i możesz go wyłączyć w dowolnym momencie. Wygenerowane treści zostają Twoje.</p></details>
+      <details><summary>Czy będą też grafiki i wideo?</summary><p>Tak, banery i krótkie wideo do reklam przygotowujemy jako kolejne moduły. Klienci z abonamentem dostaną je jako pierwsi.</p></details>
     </div>
   </div>
 </section>
@@ -454,11 +269,12 @@
   <div class="wrap">
     <div class="cta">
       <div class="cta__copy">
-        <h2 id="cta-h">Zgłoś pomysł dziś. Za pięć dni roboczych odbierasz działający prototyp.</h2>
-        <p>30 minut rozmowy wideo, bez prezentacji sprzedażowej. Opowiadasz o problemie, a my mówimy wprost, czy AI go rozwiąże.</p>
+        <h2 id="cta-h">Zobacz efekt na własnych produktach.</h2>
+        <p>Zapisz się na wczesny dostęp. Odezwiemy się w ciągu jednego dnia roboczego, założymy konto i przygotujemy treści dla 3 Twoich produktów, żebyś zobaczył efekt na własnym sklepie.</p>
       </div>
       <div class="cta__card">
-        <a class="pill pill--light pill--lg pill--block" href="mailto:kontakt@modera.pl?subject=Bezp%C5%82atna%20rozmowa%20%E2%80%94%20prototyp%20w%205%20dni">Umów 30 minut rozmowy</a>
+        <a class="pill pill--light pill--lg pill--block" href="mailto:kontakt@modera.pl?subject=Wczesny%20dost%C4%99p%20do%20MODERA">Zapisz się na wczesny dostęp</a>
+        <a class="pill pill--outline-light pill--block" href="demo.html">Najpierw zobacz demo</a>
         <dl>
           <div><dt>E-mail</dt><dd><a href="mailto:kontakt@modera.pl">kontakt@modera.pl</a></dd></div>
           <div><dt>Telefon</dt><dd><a href="tel:+48792668083">+48 792 668 083</a></dd></div>
@@ -474,15 +290,16 @@
   <div class="wrap foot__grid">
     <div>
       <a class="brand" href="index.html"><svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg><span class="brand__word">modera</span></a>
-      <p class="foot__about">Budujemy narzędzia AI, dashboardy i portale dla polskich firm. Prototyp w 5 dni roboczych, a wszystko, co zbudujemy, należy do Ciebie.</p>
+      <p class="foot__about">Reklamy Google i Facebook, opisy produktów, mailingi i artykuły na bloga z jednego linku do produktu. Po polsku, w limitach znaków, w tonie Twojej marki.</p>
       <p class="foot__contact"><a href="mailto:kontakt@modera.pl">kontakt@modera.pl</a><a href="tel:+48792668083">+48 792 668 083</a></p>
     </div>
-    <nav aria-label="Usługi"><p class="foot__h">Usługi</p><a href="index.html#portal">Prototyp i portal AI</a><a href="index.html#dashboard">Dashboard AI</a><a href="index.html#leady">Leady i widoczność w AI</a><a href="index.html#szkolenia">Szkolenia i AI Act</a><a href="rozwiazania.html">Katalog rozwiązań</a></nav>
-    <nav aria-label="Firma"><p class="foot__h">Firma</p><a href="cennik.html">Cennik</a><a href="o-mnie.html">O mnie</a><a href="index.html#tydzien">Jak pracujemy</a><a href="faq.html">FAQ</a><a href="#kontakt">Kontakt</a></nav>
+    <nav aria-label="Produkt"><p class="foot__h">Produkt</p><a href="index.html#narzedzia">Narzędzia</a><a href="demo.html">Demo</a><a href="cennik.html">Cennik</a><a href="index.html#jak-to-dziala">Jak to działa</a><a href="rozwiazania.html">Wdrożenia na zamówienie</a></nav>
+    <nav aria-label="Firma"><p class="foot__h">Firma</p><a href="o-mnie.html">O mnie</a><a href="faq.html">FAQ</a><a href="#kontakt">Kontakt</a></nav>
     <nav aria-label="Dokumenty"><p class="foot__h">Dokumenty</p><a href="regulamin.html">Regulamin</a><a href="polityka-prywatnosci.html">Polityka prywatności</a></nav>
   </div>
   <div class="wrap foot__legal"><span>© 2026 MODERA · [nazwa firmy, NIP, adres — do uzupełnienia]</span><span>Strona nie używa plików cookies ani narzędzi śledzących.</span></div>
 </footer>
+
 
 <script src="app.js" defer></script>
 </body>
