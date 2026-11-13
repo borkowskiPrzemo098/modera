@@ -879,3 +879,6 @@ svg.core__mark{width:84px;height:84px;background:none;box-shadow:none;border-rad
   .pui__sync{visibility:hidden}
   .hero{padding-bottom:190px}
 }
+/* glow fades out before the section edge (no hard line) */
+.hero__glow{-webkit-mask-image:linear-gradient(180deg,#000 45%,transparent 92%);mask-image:linear-gradient(180deg,#000 45%,transparent 92%)}
+.phero .hero__glow{height:100%;inset:0 -10% 0}
