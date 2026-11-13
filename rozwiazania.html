@@ -51,6 +51,7 @@
     <symbol id="i-sheet" viewBox="0 0 32 32"><path d="M5 5h22v22H5V5Z"/><path d="M5 12h22M5 19h22M13 5v22"/></symbol>
     <symbol id="i-bell" viewBox="0 0 32 32"><path d="M8 22V14a8 8 0 0 1 16 0v8l2 3H6l2-3Z"/><path d="M13 28h6"/></symbol>
     <symbol id="i-spark" viewBox="0 0 32 32"><path d="M16 3v7M16 22v7M3 16h7M22 16h7M7 7l5 5M20 20l5 5M25 7l-5 5M12 20l-5 5"/></symbol>
+    <symbol id="logo-mark" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#0D2321"/><path d="M15 46V18l17 19 17-19v28" fill="none" stroke="#5ED3B5" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="46" r="4.3" fill="#F2F5F4"/><circle cx="15" cy="18" r="4.3" fill="#F2F5F4"/><circle cx="49" cy="18" r="4.3" fill="#F2F5F4"/><circle cx="49" cy="46" r="4.3" fill="#F2F5F4"/><circle cx="32" cy="37" r="9" fill="#5ED3B5" fill-opacity=".22"/><circle cx="32" cy="37" r="5.6" fill="#5ED3B5"/></symbol>
     <symbol id="i-clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></symbol>
   </defs>
 </svg>
@@ -58,7 +59,7 @@
 <header class="bar" id="top">
   <div class="bar__in">
     <a class="brand" href="index.html">
-      <span class="brand__mark" aria-hidden="true">M</span><span class="brand__word">MODERA</span>
+      <svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg><span class="brand__word">modera</span>
     </a>
     <nav class="nav" id="nav" aria-label="Główna nawigacja">
       <a href="index.html#uslugi" data-nav="uslugi">Usługi</a>
@@ -360,7 +361,7 @@
 <footer class="foot">
   <div class="wrap foot__grid">
     <div>
-      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">M</span><span class="brand__word">MODERA</span></a>
+      <a class="brand" href="index.html"><svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg><span class="brand__word">modera</span></a>
       <p class="foot__about">Budujemy narzędzia AI, dashboardy i portale dla polskich firm. Prototyp w 5 dni roboczych, a wszystko, co zbudujemy, należy do Ciebie.</p>
       <p class="foot__contact"><a href="mailto:kontakt@modera.pl">kontakt@modera.pl</a><a href="tel:+48792668083">+48 792 668 083</a></p>
     </div>

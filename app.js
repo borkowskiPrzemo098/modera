@@ -131,6 +131,21 @@
   });
   }
 
+  /* ---------- hero: typed questions in portal search ---------- */
+  const askEl = $('#askType');
+  if (askEl && !reduce) {
+    const Q = ['Dlaczego spadła marża w tym tygodniu?', 'Którzy klienci zamawiają rzadziej?', 'Ile mamy należności po terminie?', 'Gdzie przesunąć budżet reklam?'];
+    let qi = 0;
+    const type = () => {
+      const q = Q[qi % Q.length]; let n = 0; askEl.classList.add('is-typing');
+      const t = setInterval(() => {
+        askEl.textContent = q.slice(0, ++n);
+        if (n >= q.length) { clearInterval(t); setTimeout(() => { qi++; type(); }, 2600); }
+      }, 45);
+    };
+    setTimeout(type, 1200);
+  }
+
   /* ---------- flow wires: systems → core → outcomes ---------- */
   const stage = $('#flowStage');
   if (stage) {

@@ -51,6 +51,7 @@
     <symbol id="i-sheet" viewBox="0 0 32 32"><path d="M5 5h22v22H5V5Z"/><path d="M5 12h22M5 19h22M13 5v22"/></symbol>
     <symbol id="i-bell" viewBox="0 0 32 32"><path d="M8 22V14a8 8 0 0 1 16 0v8l2 3H6l2-3Z"/><path d="M13 28h6"/></symbol>
     <symbol id="i-spark" viewBox="0 0 32 32"><path d="M16 3v7M16 22v7M3 16h7M22 16h7M7 7l5 5M20 20l5 5M25 7l-5 5M12 20l-5 5"/></symbol>
+    <symbol id="logo-mark" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#0D2321"/><path d="M15 46V18l17 19 17-19v28" fill="none" stroke="#5ED3B5" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="46" r="4.3" fill="#F2F5F4"/><circle cx="15" cy="18" r="4.3" fill="#F2F5F4"/><circle cx="49" cy="18" r="4.3" fill="#F2F5F4"/><circle cx="49" cy="46" r="4.3" fill="#F2F5F4"/><circle cx="32" cy="37" r="9" fill="#5ED3B5" fill-opacity=".22"/><circle cx="32" cy="37" r="5.6" fill="#5ED3B5"/></symbol>
     <symbol id="i-clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></symbol>
   </defs>
 </svg>
@@ -58,7 +59,7 @@
 <header class="bar" id="top">
   <div class="bar__in">
     <a class="brand" href="index.html">
-      <span class="brand__mark" aria-hidden="true">M</span><span class="brand__word">MODERA</span>
+      <svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg><span class="brand__word">modera</span>
     </a>
     <nav class="nav" id="nav" aria-label="Główna nawigacja">
       <a href="index.html#uslugi" data-nav="uslugi">Usługi</a>
@@ -92,36 +93,67 @@
 
   <div class="wrap">
     <div class="stage">
-      <figure class="browser">
-        <div class="browser__bar"><i></i><i></i><i></i><span>portal.twojafirma.pl</span></div>
-        <div class="browser__screen">
-          <video class="browser__video" autoplay muted loop playsinline preload="metadata" poster="assets/hero.jpg" aria-hidden="true">
-            <source src="assets/hero.mp4" type="video/mp4">
-          </video>
+      <figure class="pui" aria-label="Podgląd portalu AI na przykładowych danych">
+        <div class="browser__bar"><i></i><i></i><i></i><span>portal.twojafirma.pl</span><em class="pui__demo">Dane przykładowe</em></div>
+        <div class="pui__body">
+          <aside class="pui__nav" aria-hidden="true">
+            <p class="pui__org"><span>TF</span>Twoja Firma</p>
+            <ul>
+              <li class="is-on"><svg class="ic"><use href="#i-stats"/></svg>Pulpit</li>
+              <li><svg class="ic"><use href="#i-funnel"/></svg>Sprzedaż</li>
+              <li><svg class="ic"><use href="#i-cart"/></svg>Zamówienia</li>
+              <li><svg class="ic"><use href="#i-cms"/></svg>Opisy produktów</li>
+              <li><svg class="ic"><use href="#i-ask"/></svg>Asystent AI</li>
+              <li><svg class="ic"><use href="#i-plug"/></svg>Integracje</li>
+            </ul>
+            <p class="pui__sync"><span class="dot"></span>4 systemy · sync 6:58</p>
+          </aside>
+          <div class="pui__main">
+            <header class="pui__top">
+              <div><small>Czwartek, 7:00 · raport poranny</small><h2 class="pui__hi">Dzień dobry, Anna. Oto co zmieniło się od wczoraj.</h2></div>
+            </header>
+            <div class="pui__kpis">
+              <div><small>Przychód, tydzień</small><b>412 380 zł</b><em class="up">+8,4%</em></div>
+              <div><small>Zamówienia</small><b>1 284</b><em class="up">+5,1%</em></div>
+              <div><small>Marża brutto</small><b>31,2%</b><em class="down">−1,3 pp</em></div>
+              <div><small>Należności po terminie</small><b>86 tys. zł</b><em class="up">−12%</em></div>
+            </div>
+            <div class="pui__grid">
+              <div class="pui__chart">
+                <p>Przychód tygodniowy</p>
+                <div class="pui__bars" aria-hidden="true"><i style="--h:44%"></i><i style="--h:50%"></i><i style="--h:47%"></i><i style="--h:58%"></i><i style="--h:55%"></i><i style="--h:64%"></i><i style="--h:61%"></i><i style="--h:72%"></i><i style="--h:75%"></i><i style="--h:83%"></i><i style="--h:80%"></i><i class="is-hot" style="--h:96%"></i></div>
+              </div>
+              <div class="pui__ai">
+                <p class="pui__ai-h"><svg class="ic"><use href="#i-spark"/></svg>Rekomendacje AI na dziś</p>
+                <ul>
+                  <li><span class="pri pri--hi"></span><div><b>Zadzwoń do 6 stałych klientów</b><small>nie zamówili od 21 dni · lista gotowa</small></div></li>
+                  <li><span class="pri"></span><div><b>Przesuń 1 500 zł na „Akcesoria”</b><small>koszt zamówienia 14,20 zł zamiast 23,90 zł</small></div></li>
+                  <li><span class="pri"></span><div><b>Sprawdź rabaty w 2 regionach</b><small>obniżają marżę o 1,3 pp</small></div></li>
+                </ul>
+              </div>
+            </div>
+            <div class="pui__ask"><svg class="ic"><use href="#i-ask"/></svg><span class="pui__type" id="askType">Dlaczego spadła marża w tym tygodniu?</span><span class="pui__send"><svg class="ic"><use href="#i-arrow"/></svg></span></div>
+          </div>
         </div>
       </figure>
 
-      <div class="float float--build" aria-hidden="true">
-        <p class="float__title">Prototyp w budowie</p>
-        <ol class="days">
-          <li class="is-done">Pn</li><li class="is-done">Wt</li><li class="is-now">Śr</li><li>Cz</li><li>Pt</li>
-        </ol>
-        <p class="float__meta"><span class="dot"></span>Dzień 3 z 5 · testy z zespołem w czwartek</p>
+      <div class="phone" aria-hidden="true">
+        <div class="phone__notch"></div>
+        <p class="phone__time">7:02</p>
+        <div class="notif">
+          <p class="notif__app"><svg class="lg" aria-hidden="true"><use href="#logo-mark"/></svg>MODERA · teraz</p>
+          <b>6 klientów przestało zamawiać</b>
+          <span>Łączna wartość zamówień: 48 tys. zł / mies. Lista z telefonami jest gotowa.</span>
+        </div>
+        <div class="notif notif--soft">
+          <p class="notif__app"><svg class="lg" aria-hidden="true"><use href="#logo-mark"/></svg>MODERA · 6:30</p>
+          <b>187 opisów produktów czeka</b>
+          <span>Do akceptacji w 6 językach.</span>
+        </div>
       </div>
 
-      <div class="float float--kpi" aria-hidden="true">
-        <p class="float__title">Przychód, tydzień</p>
-        <p class="float__num">412 380 zł <em>+8,4%</em></p>
-        <div class="minibars"><i style="--h:42%"></i><i style="--h:50%"></i><i style="--h:46%"></i><i style="--h:62%"></i><i style="--h:58%"></i><i style="--h:71%"></i><i style="--h:68%"></i><i class="is-hot" style="--h:92%"></i></div>
-      </div>
-
-      <div class="float float--chat" aria-hidden="true">
-        <p class="bubble bubble--me">Co powinno mnie dziś martwić?</p>
-        <p class="bubble">Marża spadła o 1,3 pp. Główna przyczyna to rabaty w dwóch regionach. Przygotować listę dla handlowców?</p>
-      </div>
     </div>
 
-    
   </div>
 </section>
 
@@ -143,7 +175,7 @@
       </ul>
       <div class="core" aria-label="Rdzeń MODERA">
         <div class="core__ring" aria-hidden="true"></div>
-        <span class="core__mark" aria-hidden="true">M</span>
+        <svg class="core__mark" aria-hidden="true"><use href="#logo-mark"/></svg>
         <b>Twój portal AI</b>
         <ul class="core__steps">
           <li><svg class="ic"><use href="#i-plug"/></svg>łączy dane</li>
@@ -441,7 +473,7 @@
 <footer class="foot">
   <div class="wrap foot__grid">
     <div>
-      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">M</span><span class="brand__word">MODERA</span></a>
+      <a class="brand" href="index.html"><svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg><span class="brand__word">modera</span></a>
       <p class="foot__about">Budujemy narzędzia AI, dashboardy i portale dla polskich firm. Prototyp w 5 dni roboczych, a wszystko, co zbudujemy, należy do Ciebie.</p>
       <p class="foot__contact"><a href="mailto:kontakt@modera.pl">kontakt@modera.pl</a><a href="tel:+48792668083">+48 792 668 083</a></p>
     </div>
