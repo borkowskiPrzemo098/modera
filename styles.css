@@ -870,3 +870,12 @@ svg.core__mark{width:84px;height:84px;background:none;box-shadow:none;border-rad
 .notif--soft{background:var(--grey-2)}
 .notif span{color:var(--ink-2)}
 .phone{box-shadow:var(--shadow-lg),inset 0 0 0 2px var(--dark-2)}
+/* fix: photo tile seam on hover — fade lives in the image itself */
+.tile--photo::after{content:none}
+.tile--photo img{-webkit-mask-image:linear-gradient(180deg,#000 50%,transparent 100%);mask-image:linear-gradient(180deg,#000 50%,transparent 100%);transform-origin:50% 0}
+/* phone below the nav items, not over them */
+@media (min-width:1081px){
+  .phone{bottom:-150px}
+  .pui__sync{visibility:hidden}
+  .hero{padding-bottom:190px}
+}
