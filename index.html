@@ -99,44 +99,46 @@
   </div>
 
   <div class="wrap">
-    <div class="stage stage--gen">
-      <figure class="gen" aria-label="Podgląd panelu MODERA na przykładowym produkcie">
+    <div class="showcase">
+      <video class="showcase__bg" muted loop playsinline preload="none" poster="assets/video/cards.jpg" aria-hidden="true"><source src="assets/video/cards.mp4" type="video/mp4"></video>
+      <figure class="gen gen--v2" aria-label="Podgląd panelu MODERA na przykładowym produkcie">
         <div class="browser__bar"><i></i><i></i><i></i><span>app.modera.pl</span><em class="pui__demo">Przykładowy produkt</em></div>
-        <div class="gen__url"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg><span class="gen__link">sklep-demo.pl/ekspres-kaffo-barista-15</span><span class="gen__go">Gotowe w 38 s</span></div>
+        <div class="gen__url"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg><span class="gen__link">sklep-demo.pl/ekspres-kaffo-barista-15</span><span class="gen__go"><svg class="ic" aria-hidden="true"><use href="#i-yes"/></svg>Gotowe w 38 s</span><i class="gen__prog" aria-hidden="true"></i></div>
         <div class="gen__body">
           <div class="gen__prod">
-            <div class="pc__img"><svg class="ic" aria-hidden="true"><use href="#i-cup"/></svg></div>
-            <b>KAFFO Barista 15</b><span>Ekspres ciśnieniowy z młynkiem · 1 299 zł</span>
-            <ul><li>15 bar</li><li>młynek stożkowy</li><li>spieniacz parowy</li><li>3 lata gwarancji</li></ul>
+            <img src="assets/prod-kaffo.jpg" alt="Ekspres ciśnieniowy z młynkiem KAFFO Barista 15" width="600" height="600">
+            <b>KAFFO Barista 15</b>
+            <span class="gen__price">1 299 zł</span>
+            <ul class="gen__facts"><li><em>Ciśnienie</em>15 bar</li><li><em>Młynek</em>stożkowy</li><li><em>Spieniacz</em>parowy</li><li><em>Gwarancja</em>3 lata</li></ul>
+            <p class="gen__ok"><svg class="ic" aria-hidden="true"><use href="#i-yes"/></svg>7 parametrów ze strony</p>
           </div>
           <div class="gen__out">
             <div class="gen__tabs" aria-hidden="true"><span class="is-on">Google Ads</span><span>Facebook</span><span>Opis</span><span>Mailing</span><span>Blog</span></div>
-            <p class="gen__h">Nagłówki <small>15 z 15</small></p>
+            <div class="gen__serp"><small><b>Sponsorowane</b> · sklep-demo.pl</small><p>Ekspres KAFFO Barista 15 | Kawa jak z kawiarni w domu | 3 lata gwarancji</p><span>Ekspres z młynkiem stożkowym i ciśnieniem 15 bar. Świeżo mielona kawa w domu.</span></div>
+            <p class="gen__h">Nagłówki <small>15 z 15 · limit 30 znaków</small></p>
             <ul class="gen__rows">
-              <li>Kawa jak z kawiarni w domu<span class="cc">26/30</span></li>
-              <li>Świeżo mielona kawa<span class="cc">19/30</span></li>
-              <li>Gotowy do pracy w 30 s<span class="cc">22/30</span></li>
-              <li>Spieniacz mleka w zestawie<span class="cc">26/30</span></li>
-              <li>Ekspres z młynkiem 1299 zł<span class="cc">26/30</span></li>
-            </ul>
-            <p class="gen__h">Opis <small>4 z 4</small></p>
-            <ul class="gen__rows">
-              <li>Gotowy do pracy w ok. 30 s. Parowy spieniacz do latte i cappuccino. Zamów teraz.<span class="cc">82/90</span></li>
+              <li><span>Kawa jak z kawiarni w domu</span><i style="--w:87%"></i><span class="cc">26/30</span></li>
+              <li><span>Świeżo mielona kawa</span><i style="--w:63%"></i><span class="cc">19/30</span></li>
+              <li><span>Gotowy do pracy w 30 s</span><i style="--w:73%"></i><span class="cc">22/30</span></li>
+              <li><span>Spieniacz mleka w zestawie</span><i style="--w:87%"></i><span class="cc">26/30</span></li>
             </ul>
             <div class="gen__export"><span><svg class="ic" aria-hidden="true"><use href="#i-yes"/></svg>Wszystkie limity znaków spełnione</span><span class="gen__btn">Pobierz CSV</span></div>
           </div>
         </div>
       </figure>
 
-      <div class="float float--fb" aria-hidden="true">
-        <p class="float__title">Facebook · kąt „Problem”</p>
-        <p class="bubble">Masz dość kapsułek i kawy, która smakuje zawsze tak samo? Z ekspresem KAFFO sam decydujesz o smaku.</p>
-        <p class="float__head">Pożegnaj kapsułki <span>Dowiedz się więcej</span></p>
-      </div>
-      <div class="float float--mail" aria-hidden="true">
-        <p class="float__title">Mailing · temat</p>
-        <b>Kawa jak z kawiarni. Bez wychodzenia z domu</b>
-        <span>3 warianty tematu do testu otwarć</span>
+      <div class="showcase__side" aria-hidden="true">
+        <div class="fbad">
+          <header><span class="fb__av">SD</span><div><b>Sklep Demo</b><small>Sponsorowane</small></div></header>
+          <p>Masz dość kapsułek? Z ekspresem KAFFO sam decydujesz o smaku: świeże ziarna i 15 stopni mielenia.</p>
+          <img src="assets/prod-kaffo.jpg" alt="" width="600" height="600">
+          <footer><div><small>sklep-demo.pl</small><b>Pożegnaj kapsułki</b></div><span>Kup teraz</span></footer>
+        </div>
+        <div class="inbox">
+          <p class="inbox__h">Skrzynka odbiorcza</p>
+          <div class="inbox__row is-new"><span class="fb__av">SD</span><div><b>Kawa jak z kawiarni. Bez wychodzenia z domu</b><small>Poznaj ekspres KAFFO Barista 15 z młynkiem</small></div></div>
+          <div class="inbox__row"><span class="fb__av fb__av--soft">SD</span><div><b>Twój ekspres KAFFO czeka w koszyku</b><small>Dokończ zamówienie jednym kliknięciem</small></div></div>
+        </div>
       </div>
     </div>
   </div>

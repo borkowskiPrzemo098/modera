@@ -18,9 +18,10 @@
   /* ---------- hero video ---------- */
   document.querySelectorAll('video').forEach((v) => {
     if (reduce) { v.removeAttribute('autoplay'); v.pause(); return; }
-    if (v.preload === 'none' && 'IntersectionObserver' in window) {
+    if (v.preload === 'none' && !v.closest('.dgen') && 'IntersectionObserver' in window) {
       v.removeAttribute('autoplay');
-      new IntersectionObserver(([en]) => { en.isIntersecting ? v.play().catch(() => {}) : v.pause(); }, { rootMargin: '200px' }).observe(v);
+      const arm = () => new IntersectionObserver(([en]) => { en.isIntersecting ? v.play().catch(() => {}) : v.pause(); }, { rootMargin: '200px' }).observe(v);
+      if (document.readyState === 'complete') setTimeout(arm, 1200); else addEventListener('load', () => setTimeout(arm, 1200), { once: true });
     }
   });
 
@@ -195,7 +196,7 @@
     let cur = P[0], tab = 'google', mailI = 0, previewI = 0, timer;
 
     const productCard = (p) => `
-      <div class="pc__img"><svg class="ic" aria-hidden="true"><use href="#${ICONS[p.icon]}"/></svg></div>
+      <div class="pc__img"><img src="assets/prod-${p.id}.jpg" alt="${esc(p.short)}" width="600" height="600"></div>
       <p class="pc__cat">${esc(p.category)}</p>
       <h3>${esc(p.name)}</h3>
       <p class="pc__price">${esc(p.price)}</p>
@@ -226,7 +227,7 @@
           <p class="fb__angle">Kąt: ${esc(m.angle)}</p>
           <header><span class="fb__av">SD</span><div><b>Sklep Demo</b><small>Sponsorowane</small></div></header>
           <p class="fb__txt">${esc(m.text).replace(/\n/g, '<br>')}</p>
-          <div class="fb__img"><svg class="ic" aria-hidden="true"><use href="#${ICONS[p.icon]}"/></svg></div>
+          <div class="fb__img"><img src="assets/prod-${p.id}.jpg" alt="" width="600" height="600"></div>
           <footer><div><small>sklep-demo.pl</small><b>${esc(m.headline)}</b></div><span class="fb__cta">${esc(m.cta)}</span></footer>
           <div class="fb__copy">${copyBtn(m.text + '\n\nNagłówek: ' + m.headline)}</div>
         </article>`).join('')}</div>`,
@@ -274,10 +275,11 @@
     const run = (p, msg) => {
       clearTimeout(timer); input.value = p.url; note.hidden = !msg; if (msg) note.textContent = msg;
       out.classList.add('is-loading'); steps.hidden = false;
+      const gen = $('#demoGen', demo); if (gen && !reduce) { gen.classList.add('is-on'); const gv = gen.querySelector('video'); gv.play().catch(() => {}); }
       const li = [...steps.querySelectorAll('li')]; li.forEach((x) => x.className = '');
       const step = reduce ? 0 : 520;
       li.forEach((x, i) => setTimeout(() => { li.forEach((y, j) => { y.className = j < i ? 'is-done' : j === i ? 'is-now' : ''; }); }, i * step));
-      timer = setTimeout(() => { li.forEach((y) => y.className = 'is-done'); out.classList.remove('is-loading'); show(p); }, li.length * step + 80);
+      timer = setTimeout(() => { li.forEach((y) => y.className = 'is-done'); out.classList.remove('is-loading'); const gen = $('#demoGen', demo); if (gen) { gen.classList.remove('is-on'); setTimeout(() => gen.querySelector('video').pause(), 400); } show(p); }, li.length * step + 80);
     };
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -318,7 +320,7 @@
       const b = e.target.closest('button'); if (!b) return;
       const yearly = b.dataset.bill === 'year';
       bill.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b));
-      document.querySelectorAll('[data-m]').forEach((el) => { el.textContent = yearly ? el.dataset.y : el.dataset.m; });
+      document.querySelectorAll('[data-m]').forEach((el) => { el.classList.remove('is-swap'); void el.offsetWidth; el.textContent = yearly ? el.dataset.y : el.dataset.m; el.classList.add('is-swap'); });
       document.querySelectorAll('.bill-note').forEach((el) => { el.textContent = yearly ? 'netto / mies., płatne rocznie' : 'netto / mies.'; });
     });
   }
