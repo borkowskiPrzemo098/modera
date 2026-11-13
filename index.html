@@ -47,6 +47,10 @@
     <symbol id="i-flag" viewBox="0 0 32 32"><path d="M7 29V4M7 5h17l-4 6 4 6H7"/></symbol>
     <symbol id="i-users" viewBox="0 0 32 32"><circle cx="12" cy="11" r="4.5"/><path d="M3 27c0-5 4-8.5 9-8.5s9 3.5 9 8.5M21 6.5a4.5 4.5 0 0 1 0 9M24 19c3 1 5 3.8 5 8"/></symbol>
     <symbol id="i-key" viewBox="0 0 32 32"><circle cx="10" cy="20" r="6"/><path d="m14.5 15.5 12-12M22 8l4 4M18.5 11.5l3 3"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 32 32"><path d="M3 5h4l3 15h15l3-10H9"/><circle cx="12" cy="26" r="2"/><circle cx="23" cy="26" r="2"/></symbol>
+    <symbol id="i-sheet" viewBox="0 0 32 32"><path d="M5 5h22v22H5V5Z"/><path d="M5 12h22M5 19h22M13 5v22"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 32 32"><path d="M8 22V14a8 8 0 0 1 16 0v8l2 3H6l2-3Z"/><path d="M13 28h6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 32 32"><path d="M16 3v7M16 22v7M3 16h7M22 16h7M7 7l5 5M20 20l5 5M25 7l-5 5M12 20l-5 5"/></symbol>
     <symbol id="i-clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></symbol>
   </defs>
 </svg>
@@ -121,15 +125,49 @@
   </div>
 </section>
 
-<section class="tools" aria-label="Narzędzia i systemy, z którymi pracujemy">
-  <p class="tools__label">Łączymy modele AI z systemami, których już używasz</p>
-  <div class="marquee">
-    <ul class="marquee__track">
-      <li>Claude</li><li>ChatGPT</li><li>Gemini</li><li>Microsoft Copilot</li><li>Comarch ERP</li><li>Subiekt</li><li>Symfonia</li><li>enova365</li><li>BaseLinker</li><li>Shopify</li><li>PrestaShop</li><li>HubSpot</li><li>Pipedrive</li><li>Google Ads</li><li>Meta Ads</li><li>Google Analytics 4</li><li>Microsoft 365</li><li>Google Workspace</li><li>Make</li>
-    </ul>
-    <ul class="marquee__track" aria-hidden="true">
-      <li>Claude</li><li>ChatGPT</li><li>Gemini</li><li>Microsoft Copilot</li><li>Comarch ERP</li><li>Subiekt</li><li>Symfonia</li><li>enova365</li><li>BaseLinker</li><li>Shopify</li><li>PrestaShop</li><li>HubSpot</li><li>Pipedrive</li><li>Google Ads</li><li>Meta Ads</li><li>Google Analytics 4</li><li>Microsoft 365</li><li>Google Workspace</li><li>Make</li>
-    </ul>
+<section class="flow" id="jak-to-dziala" aria-labelledby="flow-h">
+  <div class="wrap">
+    <div class="flow__head">
+      <h2 id="flow-h">Twoje systemy wchodzą. <span>Gotowe decyzje wychodzą.</span></h2>
+      <p>Podłączamy to, czego już używasz. AI łączy dane z każdego źródła, pilnuje ich co noc i rano podaje konkretne odpowiedzi, a nie kolejne tabelki.</p>
+    </div>
+    <div class="flow__stage" id="flowStage">
+      <svg class="flow__wires" id="flowWires" aria-hidden="true"></svg>
+      <ul class="flow__in" aria-label="Źródła danych">
+        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-data"/></svg></span><b>ERP i księgowość</b><small>Comarch, Subiekt, Symfonia, enova</small></li>
+        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-cart"/></svg></span><b>Sklep i marketplace</b><small>Shopify, PrestaShop, BaseLinker</small></li>
+        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-users"/></svg></span><b>CRM i sprzedaż</b><small>HubSpot, Pipedrive, zapytania</small></li>
+        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-campaign"/></svg></span><b>Reklamy</b><small>Google Ads, Meta, GA4</small></li>
+        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-sheet"/></svg></span><b>Excel i arkusze</b><small>pliki, które „ktoś aktualizuje”</small></li>
+        <li class="src"><span class="src__ic"><svg class="ic"><use href="#i-mail"/></svg></span><b>Poczta i dokumenty</b><small>Outlook, Gmail, KSeF, PDF</small></li>
+      </ul>
+      <div class="core" aria-label="Rdzeń MODERA">
+        <div class="core__ring" aria-hidden="true"></div>
+        <span class="core__mark" aria-hidden="true">M</span>
+        <b>Twój portal AI</b>
+        <ul class="core__steps">
+          <li><svg class="ic"><use href="#i-plug"/></svg>łączy dane</li>
+          <li><svg class="ic"><use href="#i-spark"/></svg>analizuje co noc</li>
+          <li><svg class="ic"><use href="#i-lock"/></svg>w Twoim środowisku</li>
+        </ul>
+      </div>
+      <div class="flow__out" aria-label="Efekty">
+        <article class="res">
+          <header><span class="res__ic"><svg class="ic"><use href="#i-stats"/></svg></span><b>Raport zarządu</b><time>dziś, 7:00</time></header>
+          <div class="res__kpis"><span><small>Przychód</small><strong>412 tys. zł</strong><em class="up">+8,4%</em></span><span><small>Marża</small><strong>31,2%</strong><em class="down">−1,3 pp</em></span></div>
+        </article>
+        <article class="res res--alert">
+          <header><span class="res__ic"><svg class="ic"><use href="#i-bell"/></svg></span><b>Alert sprzedaży</b><time>teraz</time></header>
+          <p><strong>6 stałych klientów</strong> nie zamówiło od 21 dni. Lista dla handlowców jest gotowa.</p>
+        </article>
+        <article class="res">
+          <header><span class="res__ic"><svg class="ic"><use href="#i-cms"/></svg></span><b>Opisy produktów</b><time>w toku</time></header>
+          <div class="res__bar"><i style="--p:78%"></i></div>
+          <p class="res__meta">187 z 240 gotowych · 6 języków · czeka na akceptację</p>
+        </article>
+      </div>
+    </div>
+    <p class="flow__note">Przykładowe dane. Lista systemów to najczęstsze integracje; podłączamy każde źródło z API lub eksportem.</p>
   </div>
 </section>
 

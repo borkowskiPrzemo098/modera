@@ -131,6 +131,42 @@
   });
   }
 
+  /* ---------- flow wires: systems → core → outcomes ---------- */
+  const stage = $('#flowStage');
+  if (stage) {
+    const svg = $('#flowWires'), NS = 'http://www.w3.org/2000/svg';
+    const draw = () => {
+      svg.innerHTML = '';
+      if (getComputedStyle(svg).display === 'none') return;
+      const S = stage.getBoundingClientRect(), core = $('.core', stage).getBoundingClientRect();
+      const rel = (r) => ({ l: r.left - S.left, r: r.right - S.left, cy: r.top - S.top + r.height / 2 });
+      const C = rel(core), paths = [];
+      const srcs = [...stage.querySelectorAll('.src')], outs = [...stage.querySelectorAll('.res')];
+      srcs.forEach((el, i) => {
+        const a = rel(el.getBoundingClientRect()), y2 = C.cy + (i - (srcs.length - 1) / 2) * 10, mx = (a.r + C.l) / 2;
+        paths.push([`M${a.r},${a.cy} C${mx},${a.cy} ${mx},${y2} ${C.l},${y2}`, i * 0.35]);
+      });
+      outs.forEach((el, i) => {
+        const b = rel(el.getBoundingClientRect()), y1 = C.cy + (i - 1) * 14, mx = (C.r + b.l) / 2;
+        paths.push([`M${C.r},${y1} C${mx},${y1} ${mx},${b.cy} ${b.l},${b.cy}`, 1.2 + i * 0.5]);
+      });
+      paths.forEach(([d, delay], i) => {
+        const base = document.createElementNS(NS, 'path'); base.setAttribute('d', d); base.setAttribute('class', 'w'); base.id = 'fw' + i; svg.appendChild(base);
+        const live = document.createElementNS(NS, 'path'); live.setAttribute('d', d); live.setAttribute('class', 'w w--live'); svg.appendChild(live);
+        if (reduce) return;
+        const c = document.createElementNS(NS, 'circle'); c.setAttribute('r', '4'); c.setAttribute('class', 'pk');
+        const am = document.createElementNS(NS, 'animateMotion');
+        am.setAttribute('dur', '2.6s'); am.setAttribute('repeatCount', 'indefinite'); am.setAttribute('begin', delay + 's');
+        const mp = document.createElementNS(NS, 'mpath'); mp.setAttribute('href', '#fw' + i);
+        am.appendChild(mp); c.appendChild(am); svg.appendChild(c);
+      });
+    };
+    let raf; const redraw = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); };
+    new ResizeObserver(redraw).observe(stage);
+    document.fonts && document.fonts.ready.then(redraw);
+    redraw();
+  }
+
   /* ---------- pricing estimator ---------- */
   const est = $('#est');
   if (est) {
