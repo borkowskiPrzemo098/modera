@@ -1613,7 +1613,7 @@ h1,h2,h3{overflow-wrap:break-word}
 .bars__l{white-space:nowrap}
 .vs__head b{overflow-wrap:anywhere;min-width:0}
 .vs__head b.us{letter-spacing:-.01em}
-@media (max-width:640px){.bars li{grid-template-columns:max-content minmax(24px,1fr) max-content}.phero h1{font-size:clamp(2rem,9.4vw,2.6rem);hyphens:auto}.vs__head b.us{font-size:.66rem}}
+@media (max-width:640px){.bars li{grid-template-columns:max-content minmax(24px,1fr) max-content}.phero h1{font-size:clamp(2rem,9.4vw,2.6rem);hyphens:auto}}
 .vs__row{flex:1 0 auto}
 .browser__bar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pui__demo{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
